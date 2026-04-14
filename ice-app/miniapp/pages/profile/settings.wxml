@@ -1,0 +1,166 @@
+<view class="settings-container">
+    <view class="settings-header">
+        <view class="header-content">
+            <button class="back-button" bindtap="goBack">← 返回</button>
+            <text class="header-title">设置</text>
+        </view>
+    </view>
+
+    <view class="settings-main">
+        <!-- 账户设置 -->
+        <view class="settings-section">
+            <view class="section-title">账户设置</view>
+            <view class="settings-group">
+                <view class="setting-item">
+                    <view class="setting-label">用户名</view>
+                    <view class="setting-value">{{settingsData.account.username}}</view>
+                    <button class="edit-button" bindtap="editSetting" data-setting="username">编辑</button>
+                </view>
+                <view class="setting-item">
+                    <view class="setting-label">邮箱</view>
+                    <view class="setting-value">{{settingsData.account.email}}</view>
+                    <button class="edit-button" bindtap="editSetting" data-setting="email">编辑</button>
+                </view>
+                <view class="setting-item">
+                    <view class="setting-label">手机号</view>
+                    <view class="setting-value">{{settingsData.account.phone}}</view>
+                    <button class="edit-button" bindtap="editSetting" data-setting="phone">编辑</button>
+                </view>
+            </view>
+        </view>
+
+        <!-- 通知设置 -->
+        <view class="settings-section">
+            <view class="section-title">通知设置</view>
+            <view class="settings-group">
+                <view class="setting-item toggle-item">
+                    <view class="setting-label">每日登录提醒</view>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked="{{settingsData.notifications.dailyReminder}}" bindchange="toggleSetting" data-setting="dailyReminder" />
+                        <view class="toggle-slider"></view>
+                    </label>
+                </view>
+                <view class="setting-item toggle-item">
+                    <view class="setting-label">新知识更新通知</view>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked="{{settingsData.notifications.newKnowledge}}" bindchange="toggleSetting" data-setting="newKnowledge" />
+                        <view class="toggle-slider"></view>
+                    </label>
+                </view>
+                <view class="setting-item toggle-item">
+                    <view class="setting-label">游戏活动提醒</view>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked="{{settingsData.notifications.gameActivities}}" bindchange="toggleSetting" data-setting="gameActivities" />
+                        <view class="toggle-slider"></view>
+                    </label>
+                </view>
+                <view class="setting-item toggle-item">
+                    <view class="setting-label">系统消息</view>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked="{{settingsData.notifications.systemMessages}}" bindchange="toggleSetting" data-setting="systemMessages" />
+                        <view class="toggle-slider"></view>
+                    </label>
+                </view>
+            </view>
+        </view>
+
+        <!-- 音效设置 -->
+        <view class="settings-section">
+            <view class="section-title">音效设置</view>
+            <view class="settings-group">
+                <view class="setting-item toggle-item">
+                    <view class="setting-label">背景音乐</view>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked="{{settingsData.audio.backgroundMusic}}" bindchange="toggleSetting" data-setting="backgroundMusic" />
+                        <view class="toggle-slider"></view>
+                    </label>
+                </view>
+                <view class="setting-item">
+                    <view class="setting-label">音效音量</view>
+                    <view class="volume-slider">
+                        <slider value="{{settingsData.audio.soundEffects}}" bindchange="updateVolume" data-setting="soundEffects" />
+                    </view>
+                </view>
+                <view class="setting-item">
+                    <view class="setting-label">背景音乐音量</view>
+                    <view class="volume-slider">
+                        <slider value="{{settingsData.audio.backgroundVolume}}" bindchange="updateVolume" data-setting="backgroundVolume" />
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <!-- 隐私设置 -->
+        <view class="settings-section">
+            <view class="section-title">隐私设置</view>
+            <view class="settings-group">
+                <view class="setting-item toggle-item">
+                    <view class="setting-label">公开学习进度</view>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked="{{settingsData.privacy.publicProgress}}" bindchange="toggleSetting" data-setting="publicProgress" />
+                        <view class="toggle-slider"></view>
+                    </label>
+                </view>
+                <view class="setting-item toggle-item">
+                    <view class="setting-label">显示成就徽章</view>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked="{{settingsData.privacy.showAchievements}}" bindchange="toggleSetting" data-setting="showAchievements" />
+                        <view class="toggle-slider"></view>
+                    </label>
+                </view>
+                <view class="setting-item toggle-item">
+                    <view class="setting-label">允许位置访问</view>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked="{{settingsData.privacy.locationAccess}}" bindchange="toggleSetting" data-setting="locationAccess" />
+                        <view class="toggle-slider"></view>
+                    </label>
+                </view>
+            </view>
+        </view>
+
+        <!-- 其他设置 -->
+        <view class="settings-section">
+            <view class="section-title">其他设置</view>
+            <view class="settings-group">
+                <view class="setting-item">
+                    <view class="setting-label">清除缓存</view>
+                    <view class="setting-value">{{settingsData.other.cacheSize}}</view>
+                    <button class="action-button" bindtap="clearCache">清除</button>
+                </view>
+                <view class="setting-item">
+                    <view class="setting-label">版本信息</view>
+                    <view class="setting-value">{{settingsData.other.version}}</view>
+                </view>
+                <view class="setting-item">
+                    <view class="setting-label">关于我们</view>
+                    <button class="action-button" bindtap="showAbout">查看</button>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="settings-footer">
+        <view class="bottom-nav">
+            <view class="nav-item" bindtap="navigateTo" data-page="home">
+                <text class="nav-icon">🏠</text>
+                <text class="nav-text">首页</text>
+            </view>
+            <view class="nav-item" bindtap="navigateTo" data-page="knowledge">
+                <text class="nav-icon">📚</text>
+                <text class="nav-text">知识</text>
+            </view>
+            <view class="nav-item" bindtap="navigateTo" data-page="scenery">
+                <text class="nav-icon">🏔️</text>
+                <text class="nav-text">美景</text>
+            </view>
+            <view class="nav-item" bindtap="navigateTo" data-page="game">
+                <text class="nav-icon">🎮</text>
+                <text class="nav-text">游戏</text>
+            </view>
+            <view class="nav-item active">
+                <text class="nav-icon">👤</text>
+                <text class="nav-text">我的</text>
+            </view>
+        </view>
+    </view>
+</view>

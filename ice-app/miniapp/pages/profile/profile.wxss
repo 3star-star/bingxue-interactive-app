@@ -1,0 +1,486 @@
+.profile-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e0f7fa 0%, #b3e5fc 50%, #81d4fa 100%);
+    font-family: 'Microsoft YaHei', sans-serif;
+    padding-bottom: 80rpx;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.profile-header {
+    background: linear-gradient(135deg, #0277bd 0%, #01579b 100%);
+    color: white;
+    padding: 40rpx 30rpx;
+    text-align: center;
+    box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 750rpx;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.user-avatar {
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 6rpx solid white;
+    margin-right: 30rpx;
+    box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.user-avatar:hover {
+    transform: scale(1.05);
+}
+
+.user-avatar image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-info {
+    text-align: left;
+}
+
+.user-name {
+    font-size: 36rpx;
+    font-weight: bold;
+    margin-bottom: 10rpx;
+    display: block;
+    text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.2);
+}
+
+.user-welcome {
+    font-size: 24rpx;
+    opacity: 0.9;
+    display: block;
+}
+
+.profile-main {
+    max-width: 750rpx;
+    margin: 30rpx auto;
+    padding: 0 30rpx;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30rpx;
+}
+
+.section-title {
+    color: #0277bd;
+    font-size: 32rpx;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10rpx;
+}
+
+.section-title::before {
+    content: '📊';
+    font-size: 28rpx;
+}
+
+.section-actions {
+    display: flex;
+    gap: 10rpx;
+}
+
+.section-actions .van-button {
+    padding: 10rpx 20rpx;
+    font-size: 24rpx;
+}
+
+.stats-section, .achievements-section, .favorites-section, .stats-chart-section {
+    background: white;
+    border-radius: 20rpx;
+    padding: 30rpx;
+    margin-bottom: 30rpx;
+    box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.stats-section:hover, .achievements-section:hover, .favorites-section:hover, .stats-chart-section:hover {
+    transform: translateY(-5rpx);
+    box-shadow: 0 12rpx 40rpx rgba(0, 0, 0, 0.1);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30rpx;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+    border-radius: 20rpx;
+    padding: 30rpx;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4rpx;
+    background: linear-gradient(90deg, #0288d1, #0277bd);
+}
+
+.stat-card:hover {
+    transform: translateY(-10rpx);
+    box-shadow: 0 12rpx 24rpx rgba(0, 0, 0, 0.1);
+}
+
+.stat-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15rpx;
+    margin-bottom: 20rpx;
+}
+
+.stat-icon {
+    font-size: 40rpx;
+    color: #0277bd;
+}
+
+.stat-value {
+    font-size: 50rpx;
+    font-weight: bold;
+    color: #0277bd;
+    margin-bottom: 15rpx;
+    display: block;
+}
+
+.stat-label {
+    font-size: 24rpx;
+    color: #546e7a;
+    margin-bottom: 20rpx;
+    display: block;
+}
+
+.progress-bar {
+    height: 16rpx;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 8rpx;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #0288d1 0%, #0277bd 100%);
+    border-radius: 8rpx;
+    transition: width 1s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+.progress-text {
+    font-size: 20rpx;
+    color: #0277bd;
+    font-weight: bold;
+    margin-top: 10rpx;
+    display: block;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30rpx;
+}
+
+.achievement-card {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border-radius: 20rpx;
+    padding: 30rpx;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.achievement-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4rpx;
+    background: linear-gradient(90deg, #4caf50, #2e7d32);
+}
+
+.achievement-card:hover {
+    transform: translateY(-10rpx);
+    box-shadow: 0 12rpx 24rpx rgba(0, 0, 0, 0.1);
+}
+
+.achievement-card.unlocked {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+}
+
+.achievement-card:not(.unlocked) {
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    opacity: 0.7;
+}
+
+.achievement-icon {
+    position: relative;
+    font-size: 50rpx;
+    margin-bottom: 15rpx;
+    display: block;
+}
+
+.achievement-card:not(.unlocked) .achievement-icon {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+.lock-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30rpx;
+    color: #666;
+}
+
+.achievement-info {
+    text-align: center;
+}
+
+.achievement-name {
+    font-weight: bold;
+    color: #2e7d32;
+    margin-bottom: 10rpx;
+    display: block;
+    font-size: 28rpx;
+}
+
+.achievement-desc {
+    color: #558b2f;
+    font-size: 24rpx;
+    display: block;
+    margin-bottom: 10rpx;
+}
+
+.achievement-date {
+    font-size: 20rpx;
+    color: #666;
+    font-style: italic;
+}
+
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30rpx;
+}
+
+.favorite-item {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    border-radius: 20rpx;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.favorite-item:hover {
+    transform: translateY(-10rpx);
+    box-shadow: 0 12rpx 24rpx rgba(0, 0, 0, 0.1);
+}
+
+.favorite-item image {
+    width: 100%;
+    height: 300rpx;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.favorite-item:hover image {
+    transform: scale(1.05);
+}
+
+.favorite-info {
+    padding: 20rpx;
+}
+
+.favorite-title {
+    color: #e65100;
+    font-size: 28rpx;
+    margin-bottom: 10rpx;
+    display: block;
+    font-weight: bold;
+}
+
+.favorite-desc {
+    color: #ff9800;
+    font-size: 24rpx;
+    display: block;
+    margin-bottom: 15rpx;
+}
+
+.favorite-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.favorite-actions .van-button {
+    padding: 8rpx 16rpx;
+    font-size: 20rpx;
+}
+
+.empty-favorites {
+    text-align: center;
+    padding: 40rpx;
+    color: #666;
+    font-size: 24rpx;
+}
+
+.empty-favorites text:first-child {
+    font-size: 28rpx;
+    font-weight: bold;
+    margin-bottom: 10rpx;
+    display: block;
+}
+
+.stats-chart-section {
+    background: white;
+    border-radius: 20rpx;
+    padding: 30rpx;
+    margin-bottom: 30rpx;
+    box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.05);
+}
+
+.chart-container {
+    height: 300rpx;
+    position: relative;
+}
+
+.chart-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.profile-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 15rpx 0;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #666;
+    font-size: 24rpx;
+    transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+    color: #0277bd;
+}
+
+.nav-item.active {
+    color: #0277bd;
+}
+
+.nav-icon {
+    font-size: 40rpx;
+    margin-bottom: 5rpx;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .achievements-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .favorites-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        flex-direction: column;
+    }
+
+    .user-avatar {
+        margin-right: 0;
+        margin-bottom: 20rpx;
+    }
+
+    .section-title {
+        font-size: 28rpx;
+    }
+
+    .stat-value {
+        font-size: 40rpx;
+    }
+
+    .achievement-name {
+        font-size: 24rpx;
+    }
+
+    .favorite-title {
+        font-size: 24rpx;
+    }
+}

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的收藏 - 冰雪世界</title>
+    <link rel="stylesheet" href="../../styles/favorites.css">
+    <link rel="stylesheet" href="../../styles/common.css">
+</head>
+<body>
+    <div class="favorites-container">
+        <header class="favorites-header">
+            <div class="header-content">
+                <button class="back-button" onclick="goBack()">← 返回</button>
+                <h1>我的收藏</h1>
+                <div class="header-actions">
+                    <button class="action-button" onclick="showEditMode()">编辑</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="favorites-main">
+            <!-- 收藏分类标签 -->
+            <div class="category-tabs">
+                <button class="tab-button active" data-category="all">全部</button>
+                <button class="tab-button" data-category="knowledge">知识</button>
+                <button class="tab-button" data-category="scenery">美景</button>
+                <button class="tab-button" data-category="game">游戏</button>
+            </div>
+
+            <!-- 收藏内容网格 -->
+            <div class="favorites-grid">
+                <div class="favorite-item" data-category="knowledge">
+                    <div class="favorite-card">
+                        <div class="favorite-image">
+                            <img src="../../assets/snow-mountain.jpg" alt="雪山知识">
+                        </div>
+                        <div class="favorite-info">
+                            <h3>雪山知识</h3>
+                            <p>雪山的形成与分类</p>
+                            <div class="favorite-meta">
+                                <span class="meta-item">📚 知识</span>
+                                <span class="meta-item">⭐ 收藏于 2024-03-15</span>
+                            </div>
+                        </div>
+                        <div class="favorite-actions">
+                            <button class="action-button view-button" onclick="viewFavorite(this)">查看</button>
+                            <button class="action-button delete-button" onclick="deleteFavorite(this)">删除</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="favorite-item" data-category="scenery">
+                    <div class="favorite-card">
+                        <div class="favorite-image">
+                            <img src="../../assets/ice-skating.jpg" alt="滑冰场景">
+                        </div>
+                        <div class="favorite-info">
+                            <h3>冰雪滑冰场</h3>
+                            <p>冬季滑冰运动指南</p>
+                            <div class="favorite-meta">
+                                <span class="meta-item">🏔️ 美景</span>
+                                <span class="meta-item">⭐ 收藏于 2024-03-14</span>
+                            </div>
+                        </div>
+                        <div class="favorite-actions">
+                            <button class="action-button view-button" onclick="viewFavorite(this)">查看</button>
+                            <button class="action-button delete-button" onclick="deleteFavorite(this)">删除</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="favorite-item" data-category="game">
+                    <div class="favorite-card">
+                        <div class="favorite-image">
+                            <img src="../../assets/snow-game.jpg" alt="冰雪游戏">
+                        </div>
+                        <div class="favorite-info">
+                            <h3>知识问答挑战</h3>
+                            <p>冰雪知识竞赛题目</p>
+                            <div class="favorite-meta">
+                                <span class="meta-item">🎮 游戏</span>
+                                <span class="meta-item">⭐ 收藏于 2024-03-13</span>
+                            </div>
+                        </div>
+                        <div class="favorite-actions">
+                            <button class="action-button view-button" onclick="viewFavorite(this)">查看</button>
+                            <button class="action-button delete-button" onclick="deleteFavorite(this)">删除</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="favorite-item" data-category="knowledge">
+                    <div class="favorite-card">
+                        <div class="favorite-image">
+                            <img src="../../assets/snow-science.jpg" alt="冰雪科学">
+                        </div>
+                        <div class="favorite-info">
+                            <h3>雪花形成原理</h3>
+                            <p>冰晶的六角形结构</p>
+                            <div class="favorite-meta">
+                                <span class="meta-item">📚 知识</span>
+                                <span class="meta-item">⭐ 收藏于 2024-03-12</span>
+                            </div>
+                        </div>
+                        <div class="favorite-actions">
+                            <button class="action-button view-button" onclick="viewFavorite(this)">查看</button>
+                            <button class="action-button delete-button" onclick="deleteFavorite(this)">删除</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="favorite-item" data-category="scenery">
+                    <div class="favorite-card">
+                        <div class="favorite-image">
+                            <img src="../../assets/winter-forest.jpg" alt="冬季森林">
+                        </div>
+                        <div class="favorite-info">
+                            <h3>冬季森林景观</h3>
+                            <p>雪覆盖的森林美景</p>
+                            <div class="favorite-meta">
+                                <span class="meta-item">🏔️ 美景</span>
+                                <span class="meta-item">⭐ 收藏于 2024-03-11</span>
+                            </div>
+                        </div>
+                        <div class="favorite-actions">
+                            <button class="action-button view-button" onclick="viewFavorite(this)">查看</button>
+                            <button class="action-button delete-button" onclick="deleteFavorite(this)">删除</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="favorite-item" data-category="game">
+                    <div class="favorite-card">
+                        <div class="favorite-image">
+                            <img src="../../assets/snow-puzzle.jpg" alt="雪景拼图">
+                        </div>
+                        <div class="favorite-info">
+                            <h3>雪景拼图游戏</h3>
+                            <p>冬季风景拼图挑战</p>
+                            <div class="favorite-meta">
+                                <span class="meta-item">🎮 游戏</span>
+                                <span class="meta-item">⭐ 收藏于 2024-03-10</span>
+                            </div>
+                        </div>
+                        <div class="favorite-actions">
+                            <button class="action-button view-button" onclick="viewFavorite(this)">查看</button>
+                            <button class="action-button delete-button" onclick="deleteFavorite(this)">删除</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="favorites-footer">
+            <nav class="bottom-nav">
+                <a href="../home/index.html" class="nav-item">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">首页</span>
+                </a>
+                <a href="../knowledge/index.html" class="nav-item">
+                    <span class="nav-icon">📚</span>
+                    <span class="nav-text">知识</span>
+                </a>
+                <a href="../scenery/index.html" class="nav-item">
+                    <span class="nav-icon">🏔️</span>
+                    <span class="nav-text">美景</span>
+                </a>
+                <a href="../game/index.html" class="nav-item">
+                    <span class="nav-icon">🎮</span>
+                    <span class="nav-text">游戏</span>
+                </a>
+                <a href="index.html" class="nav-item active">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-text">我的</span>
+                </a>
+            </nav>
+        </footer>
+    </div>
+
+    <script src="../../scripts/favorites.js"></script>
+</body>
+</html>

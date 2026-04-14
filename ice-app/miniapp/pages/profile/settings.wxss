@@ -1,0 +1,278 @@
+.settings-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e0f7fa 0%, #b3e5fc 50%, #81d4fa 100%);
+    font-family: 'Microsoft YaHei', sans-serif;
+    padding-bottom: 80rpx;
+}
+
+.settings-header {
+    background: linear-gradient(135deg, #0277bd 0%, #01579b 100%);
+    color: white;
+    padding: 30rpx 30rpx;
+    box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 750rpx;
+    margin: 0 auto;
+}
+
+.back-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 15rpx 30rpx;
+    border-radius: 30rpx;
+    font-size: 28rpx;
+    transition: background 0.3s ease;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.header-title {
+    font-size: 36rpx;
+    font-weight: bold;
+}
+
+.settings-main {
+    max-width: 750rpx;
+    margin: 30rpx auto;
+    padding: 0 30rpx;
+}
+
+.settings-section {
+    background: white;
+    border-radius: 20rpx;
+    padding: 30rpx;
+    margin-bottom: 30rpx;
+    box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+    color: #0277bd;
+    font-size: 32rpx;
+    margin-bottom: 30rpx;
+    font-weight: bold;
+    padding-bottom: 15rpx;
+    border-bottom: 2rpx solid #e1f5fe;
+}
+
+.settings-group {
+    display: flex;
+    flex-direction: column;
+    gap: 30rpx;
+}
+
+.setting-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20rpx;
+    border-radius: 15rpx;
+    transition: background 0.3s ease;
+}
+
+.setting-item:hover {
+    background: #f5f5f5;
+}
+
+.setting-label {
+    font-size: 30rpx;
+    color: #333;
+    flex: 1;
+}
+
+.setting-value {
+    color: #666;
+    margin-right: 20rpx;
+    font-size: 28rpx;
+}
+
+.edit-button {
+    background: #0277bd;
+    color: white;
+    border: none;
+    padding: 15rpx 30rpx;
+    border-radius: 15rpx;
+    font-size: 26rpx;
+    transition: background 0.3s ease;
+}
+
+.edit-button:hover {
+    background: #01579b;
+}
+
+.toggle-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 120rpx;
+    height: 68rpx;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34rpx;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 52rpx;
+    width: 52rpx;
+    left: 8rpx;
+    bottom: 8rpx;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: #0277bd;
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(52rpx);
+}
+
+.volume-slider {
+    width: 300rpx;
+    margin: 0 20rpx;
+}
+
+.volume-slider slider {
+    width: 100%;
+    height: 12rpx;
+    border-radius: 6rpx;
+    background: #e0e0e0;
+    outline: none;
+}
+
+.volume-slider slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 40rpx;
+    height: 40rpx;
+    border-radius: 50%;
+    background: #0277bd;
+    cursor: pointer;
+}
+
+.volume-slider slider::-moz-range-thumb {
+    width: 40rpx;
+    height: 40rpx;
+    border-radius: 50%;
+    background: #0277bd;
+    cursor: pointer;
+    border: none;
+}
+
+.action-button {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 15rpx 30rpx;
+    border-radius: 15rpx;
+    font-size: 26rpx;
+    transition: background 0.3s ease;
+}
+
+.action-button:hover {
+    background: #d32f2f;
+}
+
+.settings-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 15rpx 0;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #666;
+    font-size: 24rpx;
+}
+
+.nav-item.active {
+    color: #0277bd;
+}
+
+.nav-icon {
+    font-size: 40rpx;
+    margin-bottom: 5rpx;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .settings-group {
+        gap: 20rpx;
+    }
+
+    .setting-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10rpx;
+    }
+
+    .setting-value {
+        margin-right: 0;
+    }
+
+    .toggle-switch {
+        margin-top: 10rpx;
+    }
+
+    .volume-slider {
+        width: 100%;
+        margin: 10rpx 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .settings-header h1 {
+        font-size: 30rpx;
+    }
+
+    .section-title {
+        font-size: 28rpx;
+    }
+
+    .setting-label {
+        font-size: 26rpx;
+    }
+}

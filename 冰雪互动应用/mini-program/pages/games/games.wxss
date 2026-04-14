@@ -1,0 +1,387 @@
+/* pages/games/games.wxss */
+.games-container {
+  background: linear-gradient(to bottom, #1e3c72 0%, #2a5298 100%);
+  min-height: 100vh;
+  padding-bottom: 100rpx;
+}
+
+.page-header {
+  padding: 80rpx 40rpx 40rpx;
+  text-align: center;
+}
+
+.page-title {
+  display: block;
+  font-size: 48rpx;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.page-subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.user-info {
+  display: flex;
+  justify-content: center;
+  gap: 60rpx;
+  margin-bottom: 40rpx;
+  padding: 0 40rpx;
+}
+
+.user-level, .user-points {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 30rpx;
+  padding: 20rpx 40rpx;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.level-label, .points-label {
+  display: block;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 10rpx;
+}
+
+.level-value, .points-value {
+  display: block;
+  font-size: 36rpx;
+  color: #FFD700;
+  font-weight: bold;
+}
+
+.main-section {
+  padding: 0 40rpx 40rpx;
+}
+
+.game-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.game-card:active {
+  transform: scale(0.98);
+}
+
+.game-icon {
+  width: 120rpx;
+  height: 120rpx;
+  background: rgba(59, 130, 246, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30rpx;
+}
+
+.game-icon .icon {
+  font-size: 60rpx;
+  color: white;
+}
+
+.game-info {
+  flex: 1;
+}
+
+.game-title {
+  display: block;
+  font-size: 36rpx;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.game-desc {
+  display: block;
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20rpx;
+}
+
+.game-stats {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.game-action {
+  width: 120rpx;
+}
+
+.game-action .van-button {
+  width: 100%;
+  height: 60rpx;
+  font-size: 24rpx;
+}
+
+.leaderboard-section {
+  padding: 0 40rpx 40rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  display: block;
+  font-size: 36rpx;
+  color: white;
+  font-weight: bold;
+}
+
+.leaderboard-list {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.leaderboard-item:last-child {
+  border-bottom: none;
+}
+
+.leaderboard-item.current-user {
+  background: rgba(59, 130, 246, 0.2);
+  border-radius: 10rpx;
+  padding: 20rpx;
+}
+
+.rank-badge {
+  width: 60rpx;
+  height: 60rpx;
+  background: #3B82F6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 28rpx;
+  margin-right: 30rpx;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  display: block;
+  font-size: 28rpx;
+  color: white;
+  font-weight: bold;
+}
+
+.user-level {
+  display: block;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.user-score {
+  width: 100rpx;
+  text-align: right;
+  font-size: 28rpx;
+  color: #FFD700;
+  font-weight: bold;
+}
+
+/* 知识竞赛模态框 */
+.quiz-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx;
+}
+
+.quiz-header {
+  margin-bottom: 40rpx;
+}
+
+.quiz-title {
+  display: block;
+  font-size: 36rpx;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.question-number {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.question-number text {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.question-number .timer {
+  color: #FFD700;
+}
+
+.question-text {
+  display: block;
+  font-size: 32rpx;
+  color: white;
+  margin-bottom: 40rpx;
+  font-weight: bold;
+  text-align: center;
+}
+
+.quiz-options {
+  margin-bottom: 40rpx;
+}
+
+.quiz-option {
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20rpx;
+  color: white;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.quiz-option:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.quiz-option.selected {
+  background: #3B82F6;
+}
+
+.quiz-option.correct {
+  background: #10B981;
+}
+
+.quiz-option.wrong {
+  background: #EF4444;
+}
+
+.quiz-result {
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.result-text {
+  display: block;
+  font-size: 28rpx;
+  color: white;
+  margin-bottom: 10rpx;
+}
+
+.result-score {
+  display: block;
+  font-size: 36rpx;
+  color: #FFD700;
+  font-weight: bold;
+}
+
+.quiz-footer {
+  margin-top: auto;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  border-radius: 44rpx;
+}
+
+/* 每日挑战模态框 */
+.daily-challenge-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx;
+}
+
+.daily-tallenge-container .section-header {
+  margin-bottom: 40rpx;
+}
+
+.daily-tasks {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20rpx;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s;
+}
+
+.task-item.completed {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: #10B981;
+}
+
+.task-checkbox {
+  margin-right: 30rpx;
+}
+
+.task-info {
+  flex: 1;
+}
+
+.task-title {
+  display: block;
+  font-size: 28rpx;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.task-desc {
+  display: block;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.task-reward {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.reward-text {
+  font-size: 24rpx;
+  color: #FFD700;
+  font-weight: bold;
+}
+
+.task-item .van-button {
+  padding: 10rpx 20rpx;
+  font-size: 24rpx;
+}

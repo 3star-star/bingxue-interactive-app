@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "*.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/我的多元宇宙规划 v1.0.html"
+    }
+  ],
+  "redirects": [],
+  "headers": []
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心 - 冰雪世界</title>
+    <link rel="stylesheet" href="../../styles/profile.css">
+    <link rel="stylesheet" href="../../styles/common.css">
+</head>
+<body>
+    <div class="profile-container">
+        <header class="profile-header">
+            <div class="header-content">
+                <div class="user-avatar">
+                    <img src="../../assets/avatar-default.png" alt="用户头像">
+                </div>
+                <div class="user-info">
+                    <h2>冰雪探索者</h2>
+                    <p>欢迎回来，继续你的冰雪之旅！</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="profile-main">
+            <!-- 学习数据可视化 -->
+            <section class="stats-section">
+                <h3>学习进度</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">15</div>
+                        <div class="stat-label">已学习知识点</div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">3,280</div>
+                        <div class="stat-label">总积分</div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">8</div>
+                        <div class="stat-label">获得成就</div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 40%"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">连续登录</div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 50%"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 成就展示 -->
+            <section class="achievements-section">
+                <h3>我的成就</h3>
+                <div class="achievements-grid">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">🏆</div>
+                        <div class="achievement-name">知识达人</div>
+                        <div class="achievement-desc">完成10个知识点学习</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-icon">🗺️</div>
+                        <div class="achievement-name">探索家</div>
+                        <div class="achievement-desc">访问3个全景景点</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-icon">📚</div>
+                        <div class="achievement-name">学习先锋</div>
+                        <div class="achievement-desc">连续登录7天</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-icon">⭐</div>
+                        <div class="achievement-name">积分大师</div>
+                        <div class="achievement-desc">累计获得2000积分</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-icon">🎯</div>
+                        <div class="achievement-name">答题高手</div>
+                        <div class="achievement-desc">答对20道题目</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-icon">🏔️</div>
+                        <div class="achievement-name">冰雪爱好者</div>
+                        <div class="achievement-desc">完成所有基础知识点</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 个人收藏 -->
+            <section class="favorites-section">
+                <h3>我的收藏</h3>
+                <div class="favorites-grid">
+                    <div class="favorite-item">
+                        <img src="../../assets/snow-mountain.jpg" alt="雪山">
+                        <div class="favorite-info">
+                            <h4>雪山知识</h4>
+                            <p>雪山的形成与分类</p>
+                        </div>
+                    </div>
+                    <div class="favorite-item">
+                        <img src="../../assets/ice-skating.jpg" alt="滑冰">
+                        <div class="favorite-info">
+                            <h4>滑冰技巧</h4>
+                            <p>基础滑冰动作指导</p>
+                        </div>
+                    </div>
+                    <div class="favorite-item">
+                        <img src="../../assets/snow-scene.jpg" alt="雪景">
+                        <div class="favorite-info">
+                            <h4>雪景摄影</h4>
+                            <p>冬季摄影技巧</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="profile-footer">
+            <nav class="bottom-nav">
+                <a href="../home/index.html" class="nav-item">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">首页</span>
+                </a>
+                <a href="../knowledge/index.html" class="nav-item">
+                    <span class="nav-icon">📚</span>
+                    <span class="nav-text">知识</span>
+                </a>
+                <a href="../scenery/index.html" class="nav-item">
+                    <span class="nav-icon">🏔️</span>
+                    <span class="nav-text">美景</span>
+                </a>
+                <a href="../game/index.html" class="nav-item">
+                    <span class="nav-icon">🎮</span>
+                    <span class="nav-text">游戏</span>
+                </a>
+                <a href="index.html" class="nav-item active">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-text">我的</span>
+                </a>
+            </nav>
+        </footer>
+    </div>
+
+    <script src="../../scripts/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!--pages/knowledge/knowledge.wxml-->
+<view class="knowledge-container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">知识探索中心</text>
+    <text class="page-subtitle">探索冰雪世界的奥秘，开启学习之旅</text>
+  </view>
+
+  <!-- 分类导航 -->
+  <view class="category-nav">
+    <van-tabs
+      active="{{activeCategory}}"
+      bind:change="onCategoryChange"
+      color="#3B82F6"
+      title-active-color="#3B82F6">
+      <van-tab title="全部" name="all"></van-tab>
+      <van-tab v-for="category in knowledgeCategories" :key="category.id" :title="category.name" :name="category.id"></van-tab>
+    </van-tabs>
+  </view>
+
+  <!-- 知识卡片列表 -->
+  <view class="knowledge-list">
+    <view
+      v-for="knowledge in filteredKnowledge"
+      :key="knowledge.id"
+      class="knowledge-card"
+      :class="{ 'completed': knowledge.progress === 100 }"
+      bindtap="startLearning"
+      data-knowledge="{{knowledge}}">
+
+      <view class="card-header">
+        <view class="category-tag">
+          <text>{{getCategoryName(knowledge.category)}}</text>
+        </view>
+        <view class="difficulty-badge difficulty-{{knowledge.difficulty}}">
+          {{getDifficultyText(knowledge.difficulty)}}
+        </view>
+      </view>
+
+      <view class="card-content">
+        <text class="knowledge-title">{{knowledge.title}}</text>
+        <text class="knowledge-desc">{{knowledge.description}}</text>
+
+        <!-- 进度条 -->
+        <view class="progress-container" wx:if="{{knowledge.progress > 0}}">
+          <view class="progress-bar">
+            <view class="progress-fill" style="width: {{knowledge.progress}}%"></view>
+          </view>
+          <text class="progress-text">{{knowledge.progress}}%</text>
+        </view>
+
+        <!-- 互动类型标签 -->
+        <view class="interaction-types">
+          <text class="interaction-tag" wx:for="{{knowledge.interactionTypes}}" wx:key="type">
+            {{getInteractionTypeText(type)}}
+          </text>
+        </view>
+      </view>
+
+      <view class="card-footer">
+        <text class="status-text">
+          {{knowledge.progress === 100 ? '已完成' : '开始学习'}}
+        </text>
+        <text class="points-gain" wx:if="{{knowledge.pointsGain}}">+{{knowledge.pointsGain}}积分</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 交互学习模态框 -->
+  <van-popup
+    show="{{showInteraction}}"
+    position="bottom"
+    bind:close="onInteractionClose"
+    round
+    closeable
+    style="height: 80vh;"
+    custom-style="background: #1a1a1a;">
+
+    <view class="interaction-container">
+      <!-- 头部 -->
+      <view class="interaction-header">
+        <text class="knowledge-title">{{currentKnowledge.title}}</text>
+        <van-progress
+          percentage="{{interactionProgress}}"
+          stroke-width="6"
+          color="#3B82F6"
+          show-pivot="{{false}}"
+          custom-style="margin-top: 20rpx;"/>
+
+        <!-- 互动类型标签 -->
+        <view class="interaction-type-tag">
+          {{getInteractionTypeText(currentInteraction.type)}}
+        </view>
+      </view>
+
+      <!-- 内容区域 -->
+      <scroll-view class="interaction-content" scroll-y>
+        <!-- 探索模式 -->
+        <block wx:if="{{currentInteraction.type === 'explore'}}">
+          <view class="explore-mode">
+            <image class="explore-image" src="/assets/images/knowledge/{{currentKnowledge.id}}.jpg" mode="aspectFill"></image>
+            <view class="explore-info">
+              <text class="explore-question">{{currentInteraction.question}}</text>
+              <text class="explore-answer">{{currentInteraction.answer}}</text>
+
+              <!-- 探索提示 -->
+              <view class="explore-hint" wx:if="{{showHint}}">
+                <text class="hint-icon">💡</text>
+                <text class="hint-text">{{currentInteraction.hint}}</text>
+              </view>
+            </view>
+          </view>
+        </block>
+
+        <!-- 匹配模式 -->
+        <block wx:elif="{{currentInteraction.type === 'match'}}">
+          <view class="match-mode">
+            <view class="match-items">
+              <view
+                v-for="item in matchItems"
+                :key="item"
+                class="match-item"
+                draggable="true"
+                binddragstart="onDragStart"
+                binddragend="onDragEnd"
+                data-item="{{item}}"
+                :class="{ 'dragging': draggedItem === item }">
+                {{item}}
+              </view>
+            </view>
+
+            <view class="match-zones">
+              <view
+                v-for="(zone, index) in matchZones"
+                :key="index"
+                class="match-zone"
+                binddragover="onDragOver"
+                binddrop="onDrop"
+                data-index="{{index}}"
+                :class="{ 'highlight': isDraggingOverZone === index }">
+                <text wx:if="{{zone.content}}">{{zone.content}}</text>
+                <text wx:else>拖拽到这里</text>
+              </view>
+            </view>
+
+            <!-- 匹配提示 -->
+            <view class="match-hint" wx:if="{{showMatchHint}}">
+              <text class="hint-icon">💡</text>
+              <text class="hint-text">{{currentInteraction.hint}}</text>
+            </view>
+          </view>
+        </block>
+
+        <!-- 选择题模式 -->
+        <block wx:elif="{{currentInteraction.type === 'quiz'}}">
+          <view class="quiz-mode">
+            <text class="quiz-question">{{currentInteraction.question}}</text>
+
+            <view class="quiz-options">
+              <view
+                v-for="(option, index) in currentInteraction.options"
+                :key="index"
+                class="quiz-option"
+                :class="{
+                  'selected': selectedOption === index,
+                  'correct': showResult && index === currentInteraction.correct,
+                  'wrong': showResult && selectedOption === index && index !== currentInteraction.correct
+                }"
+                bindtap="selectOption"
+                data-index="{{index}}">
+                {{option}}
+              </view>
+            </view>
+
+            <!-- 答案解释 -->
+            <view class="answer-explanation" wx:if="{{showResult}}">
+              <text class="explanation-title">答案解析：</text>
+              <text class="explanation-text">{{currentInteraction.explanation}}</text>
+            </view>
+
+            <button
+              class="submit-btn"
+              type="primary"
+              bindtap="submitAnswer"
+              disabled="{{selectedOption === null || showResult}}">
+              {{showResult ? '下一题' : '提交答案'}}
+            </button>
+          </view>
+        </block>
+
+        <!-- 互动控制按钮 -->
+        <view class="interaction-controls" wx:if="{{!showResult}}">
+          <button class="hint-btn" bindtap="showHint" wx:if="{{currentInteraction.hint}}">
+            提示
+          </button>
+          <button class="skip-btn" bindtap="skipInteraction">
+            跳过
+          </button>
+        </view>
+      </scroll-view>
+    </view>
+  </van-popup>
+</view>

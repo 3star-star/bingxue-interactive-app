@@ -1,0 +1,222 @@
+<!--pages/games/games.wxml-->
+<view class="games-container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">游戏挑战中心</text>
+    <text class="page-subtitle">成就系统，积分排行，每日挑战</text>
+  </view>
+
+  <!-- 用户信息 -->
+  <view class="user-info">
+    <view class="user-level">
+      <text class="level-label">等级</text>
+      <text class="level-value">{{userLevel}}</text>
+    </view>
+    <view class="user-points">
+      <text class="points-label">积分</text>
+      <text class="points-value">{{userPoints}}</text>
+    </view>
+  </view>
+
+  <!-- 主要功能区域 -->
+  <view class="main-section">
+    <!-- 知识竞赛 -->
+    <view class="game-card" bindtap="startQuiz">
+      <view class="game-icon">
+        <text class="icon">🧠</text>
+      </view>
+      <view class="game-info">
+        <text class="game-title">知识竞赛</text>
+        <text class="game-desc">测试你的冰雪知识，赢取积分</text>
+        <view class="game-stats">
+          <text>🏆 最高分：{{userStats.quizBestScore || 0}}</text>
+        </view>
+      </view>
+      <view class="game-action">
+        <van-button type="primary" size="small">开始</van-button>
+      </view>
+    </view>
+
+    <!-- 每日挑战 -->
+    <view class="game-card" bindtap="startDailyChallenge">
+      <view class="game-icon">
+        <text class="icon">📅</text>
+      </view>
+      <view class="game-info">
+        <text class="game-title">每日挑战</text>
+        <text class="game-desc">完成每日任务，获得奖励</text>
+        <view class="game-stats">
+          <text>📊 已完成：{{dailyTasks.filter(t => t.completed).length}}/{{dailyTasks.length}}</text>
+        </view>
+      </view>
+      <view class="game-action">
+        <van-button type="primary" size="small">查看</van-button>
+      </view>
+    </view>
+
+    <!-- 周赛活动 -->
+    <view class="game-card" bindtap="joinWeeklyContest">
+      <view class="game-icon">
+        <text class="icon">🏁</text>
+      </view>
+      <view class="game-info">
+        <text class="game-title">周赛活动</text>
+        <text class="game-desc">每周竞赛，争夺排行榜</text>
+        <view class="game-stats">
+          <text>📈 排名：{{userStats.weeklyRank || '未参与'}}</text>
+        </view>
+      </view>
+      <view class="game-action">
+        <van-button type="primary" size="small">参与</van-button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 排行榜 -->
+  <view class="leaderboard-section">
+    <view class="section-header">
+      <text class="section-title">排行榜</text>
+      <van-button size="small" bindtap="refreshLeaderboard">刷新</van-button>
+    </view>
+
+    <view class="leaderboard-list">
+      <view
+        v-for="(user, index) in leaderboard"
+        :key="user.id"
+        class="leaderboard-item"
+        :class="{'current-user': index === 0}">
+
+        <view class="rank-badge">
+          <text>{{index + 1}}</text>
+        </view>
+
+        <view class="user-info">
+          <text class="user-name">{{user.name}}</text>
+          <text class="user-level">Lv.{{user.level}}</text>
+        </view>
+
+        <view class="user-score">
+          <text>{{user.score}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 知识竞赛模态框 -->
+  <van-popup
+    show="{{showQuiz}}"
+    position="bottom"
+    bind:close="closeQuiz"
+    round
+    closeable
+    style="height: 80vh;"
+    custom-style="background: #1a1a1a;">
+
+    <view class="quiz-container">
+      <!-- 头部 -->
+      <view class="quiz-header">
+        <text class="quiz-title">知识竞赛</text>
+        <van-progress
+          percentage="{{quizScore / 40 * 100}}"
+          stroke-width="6"
+          color="#3B82F6"
+          show-pivot="{{false}}"
+          custom-style="margin-top: 20rpx;"/>
+      </view>
+
+      <!-- 题目区域 -->
+      <view class="quiz-content">
+        <view class="question-number">
+          <text>第{{currentQuestionIndex + 1}}题</text>
+          <text class="timer">⏱️ {{quizTime}}秒</text>
+        </view>
+
+        <text class="question-text">{{getQuestion(currentQuestionIndex).question}}</text>
+
+        <view class="quiz-options">
+          <view
+            v-for="(option, index) in getQuestion(currentQuestionIndex).options"
+            :key="index"
+            class="quiz-option"
+            :class="{
+              'selected': selectedOption === index,
+              'correct': showResult && index === getQuestion(currentQuestionIndex).correct,
+              'wrong': showResult && selectedOption === index && index !== getQuestion(currentQuestionIndex).correct
+            }"
+            bindtap="selectOption"
+            data-index="{{index}}">
+            {{option}}
+          </view>
+        </view>
+
+        <view class="quiz-result" wx:if="{{showResult}}">
+          <text class="result-text">{{selectedOption === getQuestion(currentQuestionIndex).correct ? '回答正确！' : '回答错误'}}</text>
+          <text class="result-score">+{{selectedOption === getQuestion(currentQuestionIndex).correct ? 10 : 0}}分</text>
+        </view>
+      </view>
+
+      <!-- 底部控制 -->
+      <view class="quiz-footer">
+        <van-button
+          class="submit-btn"
+          type="primary"
+          bindtap="submitQuizAnswer"
+          disabled="{{selectedOption === null || showResult}}">
+          {{showResult ? '下一题' : '提交答案'}}
+        </van-button>
+      </view>
+    </view>
+  </van-popup>
+
+  <!-- 每日挑战模态框 -->
+  <van-popup
+    show="{{showDailyChallenge}}"
+    position="bottom"
+    bind:close="closeDailyChallenge"
+    round
+    closeable
+    style="height: 80vh;"
+    custom-style="background: #1a1a1a;">
+
+    <view class="daily-challenge-container">
+      <view class="section-header">
+        <text class="section-title">每日挑战</text>
+        <van-button size="small" bindtap="claimDailyRewards">领取奖励</van-button>
+      </view>
+
+      <view class="daily-tasks">
+        <view
+          v-for="task in dailyTasks"
+          :key="task.id"
+          class="task-item"
+          :class="{'completed': task.completed}">
+
+          <view class="task-checkbox">
+            <van-checkbox
+              :value="task.completed"
+              disabled
+              custom-style="transform: scale(1.5);">
+            </van-checkbox>
+          </view>
+
+          <view class="task-info">
+            <text class="task-title">{{task.title}}</text>
+            <text class="task-desc">{{task.description}}</text>
+          </view>
+
+          <view class="task-reward">
+            <text class="reward-text">+{{task.reward}}积分</text>
+            <van-button
+              size="small"
+              type="primary"
+              bindtap="completeTask"
+              data-task-id="{{task.id}}"
+              disabled="{{task.completed || task.claimed}}">
+              {{task.completed && !task.claimed ? '领取' : task.claimed ? '已领取' : '完成'}}
+            </van-button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </van-popup>
+</view>

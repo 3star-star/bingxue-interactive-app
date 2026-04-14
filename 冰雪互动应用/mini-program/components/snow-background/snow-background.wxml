@@ -1,0 +1,34 @@
+<view class="snow-background" bind:tap="handleTap">
+  <!-- 雪花 -->
+  <view
+    class="snowflake"
+    wx:for="{{snowflakes}}"
+    wx:key="id"
+    style="
+      left: {{item.left}};
+      animation-duration: {{item.animationDuration}};
+      animation-delay: {{item.animationDelay}};
+      font-size: {{item.fontSize}};
+      opacity: {{item.opacity}};
+      transform: rotate({{item.rotation}}deg) translateX({{item.swayAmount}}px);
+    "
+  >
+    ❄
+  </view>
+
+  <!-- 点击效果 -->
+  <view
+    class="click-effect"
+    wx:for="{{clickEffects}}"
+    wx:key="id"
+    style="
+      left: {{item.x}}px;
+      top: {{item.y}}px;
+      opacity: {{item.opacity}};
+      transform: scale({{item.scale}});
+    "
+  >
+    <view class="effect-ring"></view>
+    <view class="effect-star">✨</view>
+  </view>
+</view>

@@ -1,0 +1,90 @@
+<!--pages/home/home.wxml-->
+<view class="home-container">
+  <!-- 背景动画 -->
+  <snow-background id="snowBackground" snowflake-count="80" enable-interaction="{{true}}"></snow-background>
+
+  <!-- 雪花控制按钮 -->
+  <view class="snow-controls" wx:if="{{showSnowControls}}">
+    <view class="control-btn" bindtap="toggleSnowAnimation">
+      <text class="btn-icon">{{isSnowPaused ? '▶️' : '⏸️'}}</text>
+      <text class="btn-text">{{isSnowPaused ? '播放' : '暂停'}}</text>
+    </view>
+    <view class="control-btn" bindtap="regenerateSnowflakes">
+      <text class="btn-icon">🔄</text>
+      <text class="btn-text">重新生成</text>
+    </view>
+    <view class="control-btn" bindtap="clearSnowflakes">
+      <text class="btn-icon">🗑️</text>
+      <text class="btn-text">清除雪花</text>
+    </view>
+  </view>
+
+  <!-- 用户信息栏 -->
+  <view class="user-info">
+    <text class="level">Lv.{{userInfo.level}}</text>
+    <text class="points">{{userInfo.points}}积分</text>
+  </view>
+
+  <!-- 欢迎区域 -->
+  <view class="welcome-section">
+    <text class="main-title">冰雪互动世界</text>
+    <text class="subtitle">探索知识的乐趣，领略冰雪的美丽</text>
+
+    <!-- 每日奖励 -->
+    <view class="daily-reward {{hasClaimedToday ? 'claimed' : ''}}" bindtap="claimDailyReward">
+      <text class="reward-icon">🎁</text>
+      <text>每日登录奖励</text>
+      <text class="reward-points">+{{rewardPoints}}</text>
+    </view>
+  </view>
+
+  <!-- 主要功能区 -->
+  <view class="main-section">
+    <view class="feature-grid">
+      <!-- 知识探索 -->
+      <view class="feature-card" bindtap="goToKnowledge">
+        <view class="feature-icon">
+          <text class="icon">📚</text>
+        </view>
+        <text class="feature-title">知识探索</text>
+        <text class="feature-desc">学习冰雪知识，互动体验</text>
+      </view>
+
+      <!-- 美景体验 -->
+      <view class="feature-card" bindtap="goToScenes">
+        <view class="feature-icon">
+          <text class="icon">🏔️</text>
+        </view>
+        <text class="feature-title">美景体验</text>
+        <text class="feature-desc">360°全景漫游，虚拟打卡</text>
+      </view>
+
+      <!-- 游戏挑战 -->
+      <view class="feature-card" bindtap="goToGames">
+        <view class="feature-icon">
+          <text class="icon">🏆</text>
+        </view>
+        <text class="feature-title">游戏挑战</text>
+        <text class="feature-desc">成就系统，积分排行</text>
+      </view>
+
+      <!-- 个人中心 -->
+      <view class="feature-card" bindtap="goToProfile">
+        <view class="feature-icon">
+          <text class="icon">👤</text>
+        </view>
+        <text class="feature-title">个人中心</text>
+        <text class="feature-desc">学习进度，个人设置</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 新功能提示 -->
+  <view class="new-feature-banner" wx:if="{{showNewFeature}}" bindtap="viewNewFeature">
+    <view class="banner-content">
+      <text class="banner-icon">🎉</text>
+      <text class="banner-text">新功能：知识竞赛挑战赛已上线！</text>
+      <text class="banner-btn">查看</text>
+    </view>
+  </view>
+</view>

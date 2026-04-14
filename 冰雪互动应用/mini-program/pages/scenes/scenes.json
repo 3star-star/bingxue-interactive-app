@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-popup": "@vant/popup/index",
+    "van-icon": "@vant/icon/index",
+    "van-button": "@vant/button/index"
+  },
+  "navigationBarTitleText": "冰雪美景"
+}

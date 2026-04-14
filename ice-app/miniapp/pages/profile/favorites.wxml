@@ -1,0 +1,70 @@
+<view class="favorites-container">
+    <view class="favorites-header">
+        <view class="header-content">
+            <button class="back-button" bindtap="goBack">← 返回</button>
+            <text class="header-title">我的收藏</text>
+            <button class="action-button" bindtap="showEditMode">{{editButtonText}}</button>
+        </view>
+    </view>
+
+    <view class="favorites-main">
+        <!-- 收藏分类标签 -->
+        <view class="category-tabs">
+            <block wx:for="{{categoryTabs}}" wx:key="index">
+                <view class="tab-button {{item.active ? 'active' : ''}}" bindtap="switchCategory" data-category="{{item.value}}">
+                    {{item.name}}
+                </view>
+            </block>
+        </view>
+
+        <!-- 收藏内容网格 -->
+        <view class="favorites-grid">
+            <block wx:for="{{filteredFavorites}}" wx:key="index">
+                <view class="favorite-item" data-category="{{item.category}}">
+                    <view class="favorite-card">
+                        <view class="favorite-image">
+                            <image src="../../assets/{{item.image}}" mode="aspectFill"></image>
+                        </view>
+                        <view class="favorite-info">
+                            <text class="favorite-title">{{item.title}}</text>
+                            <text class="favorite-desc">{{item.description}}</text>
+                            <view class="favorite-meta">
+                                <text class="meta-item" style="background: {{item.categoryColor}}; color: white;">{{item.categoryIcon}} {{item.categoryName}}</text>
+                                <text class="meta-item">⭐ 收藏于 {{item.date}}</text>
+                            </view>
+                        </view>
+                        <view class="favorite-actions" wx:if="{{isEditMode}}">
+                            <button class="action-button view-button" bindtap="viewFavorite" data-id="{{item.id}}">查看</button>
+                            <button class="action-button delete-button" bindtap="deleteFavorite" data-id="{{item.id}}">删除</button>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+
+    <view class="favorites-footer">
+        <view class="bottom-nav">
+            <view class="nav-item" bindtap="navigateTo" data-page="home">
+                <text class="nav-icon">🏠</text>
+                <text class="nav-text">首页</text>
+            </view>
+            <view class="nav-item" bindtap="navigateTo" data-page="knowledge">
+                <text class="nav-icon">📚</text>
+                <text class="nav-text">知识</text>
+            </view>
+            <view class="nav-item" bindtap="navigateTo" data-page="scenery">
+                <text class="nav-icon">🏔️</text>
+                <text class="nav-text">美景</text>
+            </view>
+            <view class="nav-item" bindtap="navigateTo" data-page="game">
+                <text class="nav-icon">🎮</text>
+                <text class="nav-text">游戏</text>
+            </view>
+            <view class="nav-item active">
+                <text class="nav-icon">👤</text>
+                <text class="nav-text">我的</text>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,141 @@
+/* components/snow-background/snow-background.wxss */
+.snow-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  z-index: 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.snowflake {
+  position: absolute;
+  color: white;
+  user-select: none;
+  animation: snowfall linear infinite;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  opacity: 0.8;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-100rpx) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(1000rpx) rotate(180deg) translateX(30rpx);
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(2000rpx) rotate(360deg) translateX(-30rpx);
+    opacity: 0;
+  }
+}
+
+/* 雪花大小和速度变化 */
+.snowflake:nth-child(1) { font-size: 0.8em; animation-duration: 10s; }
+.snowflake:nth-child(2) { font-size: 1.2em; animation-duration: 12s; }
+.snowflake:nth-child(3) { font-size: 0.6em; animation-duration: 8s; }
+.snowflake:nth-child(4) { font-size: 1.4em; animation-duration: 15s; }
+.snowflake:nth-child(5) { font-size: 1em; animation-duration: 11s; }
+.snowflake:nth-child(6) { font-size: 0.9em; animation-duration: 9s; }
+.snowflake:nth-child(7) { font-size: 1.1em; animation-duration: 13s; }
+.snowflake:nth-child(8) { font-size: 0.7em; animation-duration: 7s; }
+.snowflake:nth-child(9) { font-size: 1.3em; animation-duration: 14s; }
+.snowflake:nth-child(10) { font-size: 0.5em; animation-duration: 6s; }
+
+/* 雪花飘落轨迹 */
+.snowflake:nth-child(odd) {
+  animation-timing-function: ease-in;
+}
+.snowflake:nth-child(even) {
+  animation-timing-function: ease-out;
+}
+
+/* 雪花密度控制 */
+.snow-background .snowflake:nth-child(n+11) {
+  display: none;
+}
+
+/* 雪花交互效果 */
+.snow-background:hover .snowflake {
+  animation-play-state: paused;
+}
+
+/* 雪花闪烁效果 */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.snowflake:nth-child(3n) {
+  animation: snowfall 10s linear infinite, twinkle 2s ease-in-out infinite;
+}
+
+/* 点击效果 */
+.click-effect {
+  position: absolute;
+  pointer-events: none;
+}
+
+.effect-ring {
+  position: absolute;
+  width: 50rpx;
+  height: 50rpx;
+  border: 2rpx solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: ripple 1s ease-out;
+}
+
+.effect-star {
+  position: absolute;
+  font-size: 20rpx;
+  color: white;
+  animation: star-float 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+@keyframes star-float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50rpx) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* 雪花暂停状态 */
+.snow-background.paused .snowflake {
+  animation-play-state: paused;
+}
+
+/* 雪花清除状态 */
+.snow-background.clearing .snowflake {
+  animation: fade-out 0.5s ease-out forwards;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}

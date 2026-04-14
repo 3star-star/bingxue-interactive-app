@@ -1,0 +1,493 @@
+/* pages/knowledge/knowledge.wxss */
+.knowledge-container {
+  background: linear-gradient(to bottom, #1e3c72 0%, #2a5298 100%);
+  min-height: 100vh;
+  position: relative;
+}
+
+.page-header {
+  padding: 80rpx 40rpx 40rpx;
+  text-align: center;
+}
+
+.page-title {
+  display: block;
+  font-size: 48rpx;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.3);
+}
+
+.page-subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.category-nav {
+  padding: 0 40rpx 40rpx;
+}
+
+.knowledge-list {
+  padding: 0 40rpx 40rpx;
+}
+
+.knowledge-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.knowledge-card:active {
+  transform: scale(0.98);
+}
+
+.knowledge-card.completed {
+  border-color: #10B981;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.knowledge-card::before {
+  content: '✓';
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  font-size: 36rpx;
+  color: #10B981;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.knowledge-card.completed::before {
+  opacity: 1;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.category-tag {
+  background: rgba(59, 130, 246, 0.8);
+  padding: 10rpx 20rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: white;
+  animation: pulse 2s infinite;
+}
+
+.difficulty-badge {
+  padding: 10rpx 20rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: white;
+}
+
+.difficulty-1 {
+  background: #10B981;
+}
+
+.difficulty-2 {
+  background: #F59E0B;
+}
+
+.difficulty-3 {
+  background: #EF4444;
+}
+
+.card-content {
+  margin-bottom: 30rpx;
+}
+
+.knowledge-title {
+  display: block;
+  font-size: 36rpx;
+  color: white;
+  margin-bottom: 16rpx;
+  font-weight: bold;
+}
+
+.knowledge-desc {
+  display: block;
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6rpx;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #10B981;
+  transition: width 0.3s;
+}
+
+.progress-text {
+  margin-left: 20rpx;
+  font-size: 24rpx;
+  color: #10B981;
+  font-weight: bold;
+}
+
+.card-footer {
+  text-align: right;
+}
+
+.status-text {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.points-gain {
+  font-size: 24rpx;
+  color: #FFD700;
+  margin-left: 10rpx;
+  font-weight: bold;
+}
+
+.interaction-types {
+  display: flex;
+  gap: 10rpx;
+  margin-top: 20rpx;
+}
+
+.interaction-tag {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 5rpx 15rpx;
+  border-radius: 15rpx;
+  font-size: 20rpx;
+  color: white;
+}
+
+/* 交互模态框 */
+.interaction-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx;
+  position: relative;
+}
+
+.interaction-header {
+  margin-bottom: 40rpx;
+}
+
+.interaction-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 100rpx;
+}
+
+.interaction-type-tag {
+  background: rgba(59, 130, 246, 0.8);
+  padding: 10rpx 20rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: white;
+  margin-top: 20rpx;
+}
+
+/* 探索模式 */
+.explore-mode {
+  text-align: center;
+}
+
+.explore-image {
+  width: 100%;
+  height: 400rpx;
+  border-radius: 20rpx;
+  margin-bottom: 40rpx;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.explore-image:hover {
+  transform: scale(1.02);
+}
+
+.explore-info {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40rpx;
+  border-radius: 20rpx;
+  margin-top: 20rpx;
+}
+
+.explore-question {
+  display: block;
+  font-size: 32rpx;
+  color: white;
+  margin-bottom: 20rpx;
+  font-weight: bold;
+}
+
+.explore-answer {
+  display: block;
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+.explore-hint {
+  margin-top: 30rpx;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20rpx;
+  border-radius: 15rpx;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.hint-icon {
+  font-size: 24rpx;
+}
+
+.hint-text {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 匹配模式 */
+.match-mode {
+  margin-top: 40rpx;
+}
+
+.match-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30rpx;
+  padding: 30rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.match-item {
+  padding: 30rpx;
+  background: #3B82F6;
+  border-radius: 20rpx;
+  color: white;
+  cursor: move;
+  transition: all 0.3s;
+  transform: scale(1);
+}
+
+.match-item.dragging {
+  opacity: 0.5;
+  transform: scale(1.1);
+  box-shadow: 0 10rpx 20rpx rgba(0, 0, 0, 0.3);
+}
+
+.match-item:active {
+  opacity: 0.8;
+}
+
+.match-zones {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30rpx;
+}
+
+.match-zone {
+  padding: 40rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2rpx dashed rgba(255, 255, 255, 0.3);
+  border-radius: 20rpx;
+  min-height: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s;
+}
+
+.match-zone.highlight {
+  border-color: #3B82F6;
+  background: rgba(59, 130, 246, 0.2);
+  transform: scale(1.02);
+}
+
+.match-zone:active {
+  border-color: #3B82F6;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.match-hint {
+  margin-top: 30rpx;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20rpx;
+  border-radius: 15rpx;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+/* 选择题模式 */
+.quiz-mode {
+  margin-top: 40rpx;
+}
+
+.quiz-question {
+  display: block;
+  font-size: 32rpx;
+  color: white;
+  margin-bottom: 40rpx;
+  font-weight: bold;
+}
+
+.quiz-options {
+  margin-bottom: 60rpx;
+}
+
+.quiz-option {
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20rpx;
+  color: white;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.quiz-option:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.quiz-option.selected {
+  background: #3B82F6;
+  transform: scale(1.02);
+}
+
+.quiz-option.correct {
+  background: #10B981;
+  animation: bounce 0.5s;
+}
+
+.quiz-option.wrong {
+  background: #EF4444;
+  animation: shake 0.5s;
+}
+
+.answer-explanation {
+  margin-top: 30rpx;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30rpx;
+  border-radius: 20rpx;
+}
+
+.explanation-title {
+  display: block;
+  font-size: 28rpx;
+  color: #10B981;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.explanation-text {
+  display: block;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  border-radius: 44rpx;
+  transition: all 0.3s;
+}
+
+.submit-btn:hover {
+  transform: scale(1.02);
+}
+
+/* 互动控制按钮 */
+.interaction-controls {
+  position: fixed;
+  bottom: 40rpx;
+  left: 40rpx;
+  right: 40rpx;
+  display: flex;
+  justify-content: center;
+  gap: 20rpx;
+}
+
+.hint-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 20rpx 40rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  transition: all 0.3s;
+}
+
+.hint-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.skip-btn {
+  background: rgba(239, 68, 68, 0.8);
+  color: white;
+  padding: 20rpx 40rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  transition: all 0.3s;
+}
+
+.skip-btn:hover {
+  background: rgba(239, 68, 68, 1);
+}
+
+/* 动画 */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10rpx);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5rpx);
+  }
+  75% {
+    transform: translateX(5rpx);
+  }
+}

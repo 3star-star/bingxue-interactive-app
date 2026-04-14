@@ -1,0 +1,39 @@
+{
+  "name": "ice-snow-interactive-app",
+  "version": "1.0.0",
+  "description": "冰雪互动应用 - 知识与美景的游戏化体验",
+  "main": "web-version/index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "mini-dev": "cd mini-program && npm run dev",
+    "mini-build": "cd mini-program && npm run build"
+  },
+  "keywords": [
+    "冰雪",
+    "教育",
+    "游戏化",
+    "360全景",
+    "小程序",
+    "Web应用"
+  ],
+  "author": "创新应用开发团队",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4",
+    "pinia": "^2.1.6",
+    "three": "^0.152.2",
+    "gsap": "^3.12.2",
+    "vant": "^4.7.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^4.4.9",
+    "sass": "^1.64.2",
+    "postcss": "^8.4.27",
+    "autoprefixer": "^10.4.14",
+    "unocss": "^0.56.4"
+  }
+}

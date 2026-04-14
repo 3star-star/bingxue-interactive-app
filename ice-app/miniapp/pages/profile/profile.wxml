@@ -1,0 +1,154 @@
+<view class="profile-container">
+    <view class="profile-header">
+        <view class="header-content">
+            <view class="user-avatar">
+                <image src="../../assets/avatar-default.png" mode="aspectFill"></image>
+            </view>
+            <view class="user-info">
+                <text class="user-name">{{userData.nickname || '冰雪探索者'}}</text>
+                <text class="user-welcome">欢迎回来，继续你的冰雪之旅！</text>
+            </view>
+        </view>
+    </view>
+
+    <view class="profile-main">
+        <!-- 学习数据可视化 -->
+        <view class="stats-section">
+            <view class="section-title">学习进度</view>
+            <view class="stats-grid">
+                <view class="stat-card">
+                    <view class="stat-header">
+                        <text class="stat-icon">📚</text>
+                        <text class="stat-value">{{userData.learnedPoints}}</text>
+                    </view>
+                    <text class="stat-label">已学习知识点</text>
+                    <view class="progress-bar">
+                        <view class="progress" style="width: {{userData.progress}}%"></view>
+                    </view>
+                    <text class="progress-text">{{userData.progress}}%</text>
+                </view>
+                <view class="stat-card">
+                    <view class="stat-header">
+                        <text class="stat-icon">⭐</text>
+                        <text class="stat-value">{{userData.totalPoints}}</text>
+                    </view>
+                    <text class="stat-label">总积分</text>
+                    <view class="progress-bar">
+                        <view class="progress" style="width: {{userData.levelProgress}}%"></view>
+                    </view>
+                    <text class="progress-text">Lv.{{userData.level}}</text>
+                </view>
+                <view class="stat-card">
+                    <view class="stat-header">
+                        <text class="stat-icon">🏆</text>
+                        <text class="stat-value">{{userData.achievements}}</text>
+                    </view>
+                    <text class="stat-label">获得成就</text>
+                    <view class="progress-bar">
+                        <view class="progress" style="width: {{userData.achievementProgress}}%"></view>
+                    </view>
+                    <text class="progress-text">{{userData.achievementProgress}}%</text>
+                </view>
+                <view class="stat-card">
+                    <view class="stat-header">
+                        <text class="stat-icon">📅</text>
+                        <text class="stat-value">{{userData.consecutiveDays}}</text>
+                    </view>
+                    <text class="stat-label">连续登录</text>
+                    <view class="progress-bar">
+                        <view class="progress" style="width: {{userData.loginProgress}}%"></view>
+                    </view>
+                    <text class="progress-text">目标7天</text>
+                </view>
+            </view>
+        </view>
+
+        <!-- 成就展示 -->
+        <view class="achievements-section">
+            <view class="section-header">
+                <view class="section-title">我的成就</view>
+                <view class="section-actions">
+                    <van-button size="small" bindtap="refreshAchievements">刷新</van-button>
+                </view>
+            </view>
+            <view class="achievements-grid">
+                <block wx:for="{{userData.achievementsList}}" wx:key="index">
+                    <view class="achievement-card" :class="{ 'unlocked': item.unlocked }">
+                        <view class="achievement-icon">
+                            <text>{{item.icon}}</text>
+                            <view class="lock-icon" wx:if="{{!item.unlocked}}">🔒</view>
+                        </view>
+                        <view class="achievement-info">
+                            <text class="achievement-name">{{item.name}}</text>
+                            <text class="achievement-desc">{{item.desc}}</text>
+                            <text class="achievement-date" wx:if="{{item.unlocked}}">解锁于 {{item.unlockedAt}}</text>
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+
+        <!-- 个人收藏 -->
+        <view class="favorites-section">
+            <view class="section-header">
+                <view class="section-title">我的收藏</view>
+                <view class="section-actions">
+                    <van-button size="small" bindtap="manageFavorites">管理</van-button>
+                </view>
+            </view>
+            <view class="favorites-grid">
+                <block wx:for="{{userData.favorites}}" wx:key="index">
+                    <view class="favorite-item" bindtap="handleFavoriteTap" data-index="{{index}}">
+                        <view class="favorite-image">
+                            <image src="../../assets/{{item.image}}" mode="aspectFill"></image>
+                        </view>
+                        <view class="favorite-info">
+                            <text class="favorite-title">{{item.title}}</text>
+                            <text class="favorite-desc">{{item.desc}}</text>
+                            <view class="favorite-actions">
+                                <van-button size="mini" type="primary" bindtap="removeFavorite" data-index="{{index}}">移除</van-button>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+                <view class="empty-favorites" wx:if="{{userData.favorites.length === 0}}">
+                    <text>暂无收藏内容</text>
+                    <text>去探索更多精彩内容吧！</text>
+                </view>
+            </view>
+        </view>
+
+        <!-- 学习统计图表 -->
+        <view class="stats-chart-section">
+            <view class="section-title">学习统计</view>
+            <view class="chart-container">
+                <canvas canvas-id="learningChart" class="chart-canvas"></canvas>
+            </view>
+        </view>
+    </view>
+
+    <view class="profile-footer">
+        <view class="bottom-nav">
+            <view class="nav-item" bindtap="navigateTo" data-page="home">
+                <text class="nav-icon">🏠</text>
+                <text class="nav-text">首页</text>
+            </view>
+            <view class="nav-item" bindtap="navigateTo" data-page="knowledge">
+                <text class="nav-icon">📚</text>
+                <text class="nav-text">知识</text>
+            </view>
+            <view class="nav-item" bindtap="navigateTo" data-page="scenery">
+                <text class="nav-icon">🏔️</text>
+                <text class="nav-text">美景</text>
+            </view>
+            <view class="nav-item" bindtap="navigateTo" data-page="game">
+                <text class="nav-icon">🎮</text>
+                <text class="nav-text">游戏</text>
+            </view>
+            <view class="nav-item active">
+                <text class="nav-icon">👤</text>
+                <text class="nav-text">我的</text>
+            </view>
+        </view>
+    </view>
+</view>

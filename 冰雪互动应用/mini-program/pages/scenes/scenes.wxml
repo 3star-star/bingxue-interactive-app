@@ -1,0 +1,169 @@
+<!--pages/scenes/scenes.wxml-->
+<view class="scenes-container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">冰雪美景体验</text>
+    <text class="page-subtitle">360°全景漫游，足不出户赏尽天下雪景</text>
+  </view>
+
+  <!-- 场景列表 -->
+  <view class="scenes-list">
+    <view
+      v-for="scene in scenesList"
+      :key="scene.id"
+      class="scene-card"
+      bindtap="enterScene"
+      data-scene="{{scene}}">
+
+      <view class="scene-image">
+        <image src="{{scene.image}}" mode="aspectFill"></image>
+        <view class="scene-overlay">
+          <view class="scene-info">
+            <text class="scene-name">{{scene.name}}</text>
+            <text class="scene-location">{{scene.location}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="scene-details">
+        <text class="scene-desc">{{scene.description}}</text>
+        <view class="scene-stats">
+          <text>📍 {{scene.hotspots.length}}个景点</text>
+          <text>🎵 {{getSoundName(scene.ambientSound)}}</text>
+          <text>📸 {{scene.photosTaken || 0}}张照片</text>
+        </view>
+      </view>
+
+      <!-- 已访问标记 -->
+      <view class="visited-badge" wx:if="{{scene.visited}}">
+        <van-icon name="passed" />
+        <text>已访问</text>
+      </view>
+
+      <!-- 收藏标记 -->
+      <view class="favorite-badge" wx:if="{{scene.favorite}}">
+        <van-icon name="star" color="#FFD700" />
+        <text>已收藏</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 全景查看器 -->
+  <van-popup
+    show="{{showViewer}}"
+    position="bottom"
+    bind:close="exitScene"
+    round
+    closeable
+    style="height: 80vh;"
+    custom-style="background: #1a1a1a;">
+
+    <view class="panorama-viewer">
+      <!-- 顶部控制栏 -->
+      <view class="viewer-header">
+        <view class="scene-info">
+          <text class="scene-name">{{currentScene.name}}</text>
+          <text class="scene-location">{{currentScene.location}}</text>
+        </view>
+        <view class="viewer-controls">
+          <van-button
+            icon="{{soundEnabled ? 'volume' : 'volume-o'}}"
+            size="small"
+            bind:click="toggleSound"
+            type="primary"
+            plain>
+            {{soundEnabled ? '关闭音效' : '开启音效'}}
+          </van-button>
+          <van-button
+            icon="refresh"
+            size="small"
+            bind:click="resetView"
+            type="primary"
+            plain>
+            重置视角
+          </van-button>
+          <van-button
+            icon="star-o"
+            size="small"
+            bind:click="toggleFavorite"
+            type="primary"
+            plain>
+            {{currentScene.favorite ? '取消收藏' : '收藏场景'}}
+          </van-button>
+        </view>
+      </view>
+
+      <!-- 全景容器 -->
+      <view class="panorama-container" bindtouchstart="rotatePanorama">
+        <view class="loading" wx:if="{{loading}}">
+          <van-loading type="spinner" />
+          <text>正在加载全景...</text>
+        </view>
+
+        <!-- 全景画布 -->
+        <canvas
+          canvas-id="panorama-canvas"
+          class="panorama-canvas"
+          style="transform: rotateY({{panoramaRotation}}deg);"></canvas>
+
+        <!-- 热点标记 -->
+        <view
+          v-for="hotspot in currentScene.hotspots"
+          :key="hotspot.id"
+          class="hotspot"
+          style="left: {{hotspot.position.x * 3.5}}rpx; top: {{hotspot.position.y * 3.5}}rpx;"
+          bindtap="showHotspotInfo"
+          data-hotspot="{{hotspot}}"
+          :class="{ 'visited': hotspot.visited }">
+
+          <text class="hotspot-icon">{{hotspot.visited ? '✅' : '📍'}}</text>
+        </view>
+
+        <!-- 拍照功能 -->
+        <view class="photo-controls">
+          <button
+            class="photo-btn"
+            bindtap="takePhoto">
+            <van-icon name="photograph" size="24" />
+          </button>
+          <view class="photo-count">
+            <text>已拍 {{currentScene.photosTaken || 0}} 张</text>
+          </view>
+        </view>
+
+        <!-- 照片预览 -->
+        <view class="photo-preview" wx:if="{{showPhotoPreview}}">
+          <image src="{{photoPreviewUrl}}" mode="aspectFill" class="preview-image"></image>
+          <view class="preview-actions">
+            <van-button size="small" bindtap="savePhoto">保存</van-button>
+            <van-button size="small" bindtap="closePhotoPreview">关闭</van-button>
+          </view>
+        </view>
+
+        <!-- 提示信息 -->
+        <view class="touch-hint">
+          <text>🖱️ 拖动屏幕旋转视角</text>
+        </view>
+      </view>
+    </view>
+  </van-popup>
+
+  <!-- 热点信息弹窗 -->
+  <van-popup
+    show="{{showHotspotPopup}}"
+    position="bottom"
+    round
+    closeable
+    style="height: auto;"
+    custom-style="background: #ffffff;">
+
+    <view class="hotspot-info">
+      <text class="hotspot-title">{{currentHotspot.title}}</text>
+      <text class="hotspot-desc">{{currentHotspot.description}}</text>
+      <view class="hotspot-actions">
+        <van-button type="primary" bind:click="checkInAtHotspot">在此打卡</van-button>
+        <van-button type="default" bind:click="showHotspotPhoto">查看照片</van-button>
+      </view>
+    </view>
+  </van-popup>
+</view>

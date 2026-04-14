@@ -1,0 +1,215 @@
+/* pages/home/home.wxss */
+.home-container {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #1e3c72 0%, #2a5298 100%);
+  overflow-x: hidden;
+}
+
+/* 雪花控制按钮 */
+.snow-controls {
+  position: fixed;
+  top: 120rpx;
+  left: 30rpx;
+  display: flex;
+  gap: 20rpx;
+  z-index: 101;
+}
+
+.control-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 15rpx;
+  padding: 15rpx 20rpx;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+}
+
+.control-btn .btn-icon {
+  font-size: 28rpx;
+  margin-bottom: 5rpx;
+}
+
+.control-btn .btn-text {
+  font-size: 20rpx;
+  color: white;
+}
+
+/* 用户信息栏 */
+.user-info {
+  position: fixed;
+  top: 80rpx;
+  right: 30rpx;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  z-index: 100;
+}
+
+.user-info .level {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10rpx 20rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: white;
+}
+
+.user-info .points {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10rpx 20rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: #FFD700;
+  font-weight: bold;
+}
+
+/* 欢迎区域 */
+.welcome-section {
+  padding: 120rpx 40rpx 60rpx;
+  text-align: center;
+}
+
+.welcome-section .main-title {
+  display: block;
+  font-size: 80rpx;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  text-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.3);
+}
+
+.welcome-section .subtitle {
+  display: block;
+  font-size: 32rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 60rpx;
+}
+
+.daily-reward {
+  display: inline-flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 30rpx 60rpx;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 20rpx;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.daily-reward.claimed {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.daily-reward .reward-icon {
+  font-size: 36rpx;
+}
+
+.daily-reward .reward-points {
+  background: rgba(255, 215, 0, 0.8);
+  padding: 8rpx 16rpx;
+  border-radius: 15rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+  color: white;
+}
+
+/* 主要功能区 */
+.main-section {
+  padding: 40rpx;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40rpx;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20rpx;
+  padding: 60rpx 30rpx;
+  text-align: center;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.feature-card:active {
+  transform: scale(0.95);
+}
+
+.feature-icon {
+  width: 120rpx;
+  height: 120rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 30rpx;
+}
+
+.feature-icon .icon {
+  font-size: 60rpx;
+}
+
+.feature-title {
+  display: block;
+  font-size: 36rpx;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+}
+
+.feature-desc {
+  display: block;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+/* 新功能提示 */
+.new-feature-banner {
+  position: fixed;
+  bottom: 160rpx;
+  left: 30rpx;
+  right: 30rpx;
+  z-index: 100;
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 30rpx 40rpx;
+  background: linear-gradient(90deg, #FF6B6B 0%, #FF8E53 100%);
+  border-radius: 20rpx;
+  color: white;
+}
+
+.banner-icon {
+  font-size: 40rpx;
+}
+
+.banner-text {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+.banner-btn {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 16rpx 32rpx;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  font-weight: bold;
+}
