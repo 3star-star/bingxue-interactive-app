@@ -1,9 +1,11 @@
 import { createApp } from 'vue'
-import { createRouter, createWebHistory } from 'vue-router'
 import { createPinia } from 'pinia'
 import App from './App.vue'
-import routes from './router'
+import router from './router'
 import { useUserStore } from './stores/user'
+
+// 创建应用实例
+const app = createApp(App)
 
 // 创建应用实例
 const app = createApp(App)
