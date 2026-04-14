@@ -70,7 +70,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/bingxue-interactive-app/'),
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
@@ -87,4 +87,4 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
-export default routes
+export default router
