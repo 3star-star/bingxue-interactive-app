@@ -8,7 +8,7 @@
         @click="goBack"
         class="back-btn"
       />
-      <h1>{{ scene.name }}</h1>
+      <h1>{{ scene?.name }}</h1>
       <van-icon
         name="home"
         size="24"
@@ -17,78 +17,81 @@
       />
     </div>
 
-    <!-- 场景图片展示 -->
-    <div class="scene-image-container">
-      <img
-        :src="getSceneImage(scene.id)"
-        :alt="scene.name"
-        class="scene-image"
-      >
-      <div class="image-overlay">
-        <div class="location-info">
-          <van-icon name="location" size="16" />
-          <span>{{ scene.location }}</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 场景信息 -->
-    <div class="scene-info">
-      <h2>景点介绍</h2>
-      <p class="description">{{ scene.description }}</p>
-
-      <!-- 景点特色 -->
-      <div class="features">
-        <h3>景点特色</h3>
-        <div class="feature-list">
-          <div v-for="feature in scene.features"
-               :key="feature"
-               class="feature-item">
-            <van-icon name="star" size="16" />
-            <span>{{ feature }}</span>
+    <div v-if="scene">
+      <!-- 场景图片展示 -->
+      <div class="scene-image-container">
+        <img
+          :src="scene.image"
+          :alt="scene.name"
+          class="scene-image"
+        >
+        <div class="image-overlay">
+          <div class="location-info">
+            <van-icon name="location" size="16" />
+            <span>{{ scene.location }}</span>
           </div>
         </div>
       </div>
 
-      <!-- 景点数据 -->
-      <div class="scene-stats">
-        <div class="stat-item">
-          <van-icon name="map-marked" size="20" />
-          <span>景点数量: {{ scene.hotspots.length }}个</span>
+      <!-- 场景信息 -->
+      <div class="scene-info">
+        <h2>景点介绍</h2>
+        <p class="description">{{ scene.description }}</p>
+
+        <!-- 景点特色 -->
+        <div class="features" v-if="scene.features && scene.features.length">
+          <h3>景点特色</h3>
+          <div class="feature-list">
+            <div v-for="feature in scene.features"
+                 :key="feature"
+                 class="feature-item">
+              <van-icon name="star" size="16" />
+              <span>{{ feature }}</span>
+            </div>
+          </div>
         </div>
-        <div class="stat-item">
-          <van-icon name="music" size="20" />
-          <span>背景音效: {{ getSoundName(scene.ambientSound) }}</span>
+
+        <!-- 景点数据 -->
+        <div class="scene-stats">
+          <div class="stat-item">
+            <van-icon name="map-marked" size="20" />
+            <span>景点数量: {{ scene.hotspots.length }}个</span>
+          </div>
+          <div class="stat-item">
+            <van-icon name="music" size="20" />
+            <span>背景音效: {{ getSoundName(scene.ambientSound) }}</span>
+          </div>
         </div>
-        <div class="stat-item">
-          <van-icon name="photo" size="20" />
-          <span>最佳拍摄时间: {{ scene.bestTime }}</span>
+
+        <!-- 访问记录 -->
+        <div class="visit-record" v-if="isSceneVisited(scene.id)">
+          <van-icon name="passed" size="20" />
+          <span>已访问</span>
         </div>
       </div>
 
-      <!-- 访问记录 -->
-      <div class="visit-record" v-if="isSceneVisited(scene.id)">
-        <van-icon name="passed" size="20" />
-        <span>已访问</span>
+      <!-- 底部操作栏 -->
+      <div class="bottom-actions">
+        <van-button
+          type="primary"
+          block
+          @click="enterPanorama"
+          size="large"
+        >
+          进入全景体验
+        </van-button>
       </div>
     </div>
 
-    <!-- 底部操作栏 -->
-    <div class="bottom-actions">
-      <van-button
-        type="primary"
-        block
-        @click="enterPanorama"
-        size="large"
-      >
-        进入全景体验
-      </van-button>
+    <div v-else class="loading-state">
+      <van-loading type="spinner" />
+      <p>加载中...</p>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { scenesData, ambientSounds } from '@/data/scenesData'
@@ -97,11 +100,6 @@ import { showToast } from 'vant'
 const router = useRouter()
 const userStore = useUserStore()
 const scene = ref(null)
-
-// 获取场景图片
-const getSceneImage = (sceneId) => {
-  return `/assets/images/scenes/${sceneId}.jpg`
-}
 
 // 获取音效名称
 const getSoundName = (soundType) => {
@@ -135,7 +133,7 @@ const enterPanorama = () => {
 onMounted(() => {
   const sceneId = router.currentRoute.value.query.sceneId
   if (sceneId) {
-    scene.value = scenesData.find(s => s.id === sceneId)
+    scene.value = scenesData.find(s => s.id === Number(sceneId))
     if (scene.value) {
       // 记录访问
       userStore.visitScene(scene.value.id)
@@ -277,5 +275,18 @@ onMounted(() => {
 
 .bottom-actions {
   padding: 0 $spacing-xl $spacing-xl;
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-xl;
+  color: white;
+
+  p {
+    margin-top: $spacing-md;
+  }
 }
 </style>
