@@ -25,6 +25,32 @@
 
     <!-- 知识卡片列表 -->
     <div class="knowledge-grid">
+      <!-- 知识答题入口卡片 -->
+      <div class="knowledge-card quiz-entrance" @click="goToQuiz">
+        <div class="card-header">
+          <span class="category-tag" style="background-color: #F59E0B;">
+            知识答题
+          </span>
+          <span class="difficulty-badge" style="background: #8B5CF6;">
+            挑战
+          </span>
+        </div>
+
+        <div class="card-content">
+          <h3>📝 知识答题挑战</h3>
+          <p>测试你的冰雪知识，完成答题获得积分奖励！</p>
+        </div>
+
+        <div class="card-actions">
+          <van-button
+            type="primary"
+            size="small"
+            @click.stop="goToQuiz">
+            开始答题
+          </van-button>
+        </div>
+      </div>
+
       <div v-for="knowledge in filteredKnowledge"
            :key="knowledge.id"
            class="knowledge-card"
@@ -145,11 +171,13 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { knowledgeData, knowledgeCategories } from '@/data/knowledgeData'
 import { showToast } from 'vant'
 import BackButton from '@/components/common/BackButton.vue'
 
+const router = useRouter()
 const userStore = useUserStore()
 
 // 状态
@@ -335,6 +363,11 @@ const completeKnowledge = () => {
   userStore.checkFeatureAchievements()
 }
 
+// 跳转到答题页面
+const goToQuiz = () => {
+  router.push('/quiz')
+}
+
 // 生命周期
 onMounted(() => {
   // 初始化用户数据
@@ -399,6 +432,16 @@ onMounted(() => {
   &.completed {
     border-color: #10B981;
     background: rgba(16, 185, 129, 0.1);
+  }
+
+  &.quiz-entrance {
+    border-color: #F59E0B;
+    background: rgba(245, 158, 11, 0.15);
+
+    &:hover {
+      background: rgba(245, 158, 11, 0.25);
+      transform: translateY(-5px) scale(1.02);
+    }
   }
 
   .card-header {

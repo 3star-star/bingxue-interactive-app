@@ -1,5 +1,5 @@
 <template>
-  <div class="snow-background">
+  <div class="snow-background" v-if="showSnow">
     <div class="snowflake" v-for="flake in snowflakes" :key="flake.id" :style="flake.style">
       ❄
     </div>
@@ -14,6 +14,7 @@ const SNOWFLAKE_COUNT = 100
 
 // 雪花数据
 const snowflakes = ref([])
+const showSnow = ref(true)
 
 // 生成随机雪花
 const generateSnowflake = () => {
@@ -44,15 +45,26 @@ const animateSnow = () => {
   animationFrameId = requestAnimationFrame(animateSnow)
 }
 
+// 停止雪花的定时器
+let stopTimer = null
+
 // 生命周期
 onMounted(() => {
   initSnowflakes()
   animateSnow()
+
+  // 5秒后停止雪花特效
+  stopTimer = setTimeout(() => {
+    showSnow.value = false
+  }, 5000)
 })
 
 onUnmounted(() => {
   if (animationFrameId) {
     cancelAnimationFrame(animationFrameId)
+  }
+  if (stopTimer) {
+    clearTimeout(stopTimer)
   }
 })
 </script>

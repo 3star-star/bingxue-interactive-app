@@ -14,6 +14,12 @@ const routes = [
     meta: { title: '知识探索中心' }
   },
   {
+    path: '/quiz',
+    name: 'Quiz',
+    component: () => import('@/views/knowledge/QuizView.vue'),
+    meta: { title: '知识答题' }
+  },
+  {
     path: '/scenes',
     name: 'Scenes',
     component: () => import('@/views/scenes/ScenesView.vue'),
