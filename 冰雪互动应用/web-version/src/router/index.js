@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 const routes = [
   {
@@ -70,7 +70,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory('/bingxue-interactive-app/'),
+  history: createWebHashHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
@@ -81,7 +81,6 @@ const router = createRouter({
   }
 })
 
-// 路由守卫
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title || '冰雪互动世界'
   next()
