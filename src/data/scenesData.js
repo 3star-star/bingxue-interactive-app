@@ -7,11 +7,11 @@ export const scenesData = [
     description: "中国最美的火山湖，冬季冰封雪裹，宛如仙境",
     image: "/assets/images/scenes/changbai.jpg",
     panoramaImages: [
-      { url: "https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=1200&q=80", title: "天池全景" },
-      { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80", title: "雪山远眺" },
-      { url: "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=1200&q=80", title: "冰封湖面" },
-      { url: "https://images.unsplash.com/photo-1551582045-6ec9c11d8697?w=1200&q=80", title: "山峰侧影" },
-      { url: "https://images.unsplash.com/photo-1548777123-e216912df7d8?w=1200&q=80", title: "日出天池" }
+      { url: "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "天池全景" },
+      { url: "https://images.pexels.com/photos/1054218/pexels-photo-1054218.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "雪山远眺" },
+      { url: "https://images.pexels.com/photos/1366630/pexels-photo-1366630.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "冰封湖面" },
+      { url: "https://images.pexels.com/photos/1761279/pexels-photo-1761279.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "山峰侧影" },
+      { url: "https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "日出天池" }
     ],
     hotspots: [
       {
@@ -42,11 +42,11 @@ export const scenesData = [
     description: "中国四大自然奇观之一，冬季雾凇景观美不胜收",
     image: "/assets/images/scenes/wusong.jpg",
     panoramaImages: [
-      { url: "https://images.unsplash.com/photo-1548777123-e216912df7d8?w=1200&q=80", title: "雾凇长廊" },
-      { url: "https://images.unsplash.com/photo-1478827536114-da961b7f86d0?w=1200&q=80", title: "江边雾凇" },
-      { url: "https://images.unsplash.com/photo-1491002052546-bf38f186af56?w=1200&q=80", title: "晨光雾凇" },
-      { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80", title: "雾凇特写" },
-      { url: "https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=1200&q=80", title: "日出时分" }
+      { url: "https://images.pexels.com/photos/235621/pexels-photo-235621.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "雾凇长廊" },
+      { url: "https://images.pexels.com/photos/1179229/pexels-photo-1179229.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "江边雾凇" },
+      { url: "https://images.pexels.com/photos/1619569/pexels-photo-1619569.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "晨光雾凇" },
+      { url: "https://images.pexels.com/photos/1179225/pexels-photo-1179225.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "雾凇特写" },
+      { url: "https://images.pexels.com/photos/1770809/pexels-photo-1770809.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "日出时分" }
     ],
     hotspots: [
       {
@@ -77,11 +77,11 @@ export const scenesData = [
     description: "亚洲最大的人工林海，冬季白雪覆盖，银装素裹",
     image: "/assets/images/scenes/jingyuetan.jpg",
     panoramaImages: [
-      { url: "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=1200&q=80", title: "林海雪原" },
-      { url: "https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=1200&q=80", title: "冰封湖面" },
-      { url: "https://images.unsplash.com/photo-1478827536114-da961b7f86d0?w=1200&q=80", title: "森林步道" },
-      { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80", title: "雪景远眺" },
-      { url: "https://images.unsplash.com/photo-1491002052546-bf38f186af56?w=1200&q=80", title: "冬日暖阳" }
+      { url: "https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "林海雪原" },
+      { url: "https://images.pexels.com/photos/1574647/pexels-photo-1574647.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "冰封湖面" },
+      { url: "https://images.pexels.com/photos/1619569/pexels-photo-1619569.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "森林步道" },
+      { url: "https://images.pexels.com/photos/1179225/pexels-photo-1179225.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "雪景远眺" },
+      { url: "https://images.pexels.com/photos/1770809/pexels-photo-1770809.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "冬日暖阳" }
     ],
     hotspots: [
       {
@@ -112,11 +112,11 @@ export const scenesData = [
     description: "中国著名滑雪胜地，曾举办多项国际赛事",
     image: "/assets/images/scenes/beidahu.jpg",
     panoramaImages: [
-      { url: "https://images.unsplash.com/photo-1551582045-6ec9c11d8697?w=1200&q=80", title: "雪道全景" },
-      { url: "https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=1200&q=80", title: "山顶视角" },
-      { url: "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=1200&q=80", title: "滑雪场地" },
-      { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80", title: "群山环绕" },
-      { url: "https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=1200&q=80", title: "雪场日落" }
+      { url: "https://images.pexels.com/photos/848618/pexels-photo-848618.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "雪道全景" },
+      { url: "https://images.pexels.com/photos/848599/pexels-photo-848599.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "山顶视角" },
+      { url: "https://images.pexels.com/photos/848595/pexels-photo-848595.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "滑雪场地" },
+      { url: "https://images.pexels.com/photos/1054218/pexels-photo-1054218.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "群山环绕" },
+      { url: "https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "雪场日落" }
     ],
     hotspots: [
       {
@@ -147,11 +147,11 @@ export const scenesData = [
     description: "千年传承的冬捕文化，体验冰雪渔猎的独特魅力",
     image: "/assets/images/scenes/chagan.jpg",
     panoramaImages: [
-      { url: "https://images.unsplash.com/photo-1484820540004-14229fe36ca4?w=1200&q=80", title: "冰湖全景" },
-      { url: "https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=1200&q=80", title: "冬捕现场" },
-      { url: "https://images.unsplash.com/photo-1478827536114-da961b7f86d0?w=1200&q=80", title: "冰面作业" },
-      { url: "https://images.unsplash.com/photo-1491002052546-bf38f186af56?w=1200&q=80", title: "渔网收获" },
-      { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80", title: "湖面远眺" }
+      { url: "https://images.pexels.com/photos/1366630/pexels-photo-1366630.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "冰湖全景" },
+      { url: "https://images.pexels.com/photos/1574647/pexels-photo-1574647.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "冬捕现场" },
+      { url: "https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "冰面作业" },
+      { url: "https://images.pexels.com/photos/1179229/pexels-photo-1179229.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "渔网收获" },
+      { url: "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "湖面远眺" }
     ],
     hotspots: [
       {
@@ -182,11 +182,11 @@ export const scenesData = [
     description: "国际级滑雪度假区，设施完善，景色优美",
     image: "/assets/images/scenes/songhuahu.jpg",
     panoramaImages: [
-      { url: "https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=1200&q=80", title: "度假区全景" },
-      { url: "https://images.unsplash.com/photo-1551582045-6ec9c11d8697?w=1200&q=80", title: "雪道景观" },
-      { url: "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=1200&q=80", title: "松花湖畔" },
-      { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80", title: "山地风光" },
-      { url: "https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=1200&q=80", title: "度假村夜景" }
+      { url: "https://images.pexels.com/photos/848595/pexels-photo-848595.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "度假区全景" },
+      { url: "https://images.pexels.com/photos/848618/pexels-photo-848618.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "雪道景观" },
+      { url: "https://images.pexels.com/photos/1574647/pexels-photo-1574647.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "松花湖畔" },
+      { url: "https://images.pexels.com/photos/1054218/pexels-photo-1054218.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "山地风光" },
+      { url: "https://images.pexels.com/photos/1761279/pexels-photo-1761279.jpeg?auto=compress&cs=tinysrgb&w=1200", title: "度假村夜景" }
     ],
     hotspots: [
       {
