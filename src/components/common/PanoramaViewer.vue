@@ -6,7 +6,7 @@
         <div class="panorama-header">
           <div class="header-info">
             <h2>{{ sceneName }}</h2>
-            <p>{{ currentImage.title }}</p>
+            <p>{{ currentImage?.title || '' }}</p>
           </div>
           <van-icon name="cross" size="28" class="close-btn" @click="handleClose" />
         </div>
@@ -16,13 +16,13 @@
           <transition name="slide-fade" mode="out-in">
             <div :key="currentIndex" class="image-wrapper">
               <img
-                :src="currentImage.url"
-                :alt="currentImage.title"
+                :src="currentImage?.url || ''"
+                :alt="currentImage?.title || ''"
                 class="panorama-image"
                 @error="handleImageError"
               >
               <div class="image-overlay">
-                <div class="image-title">{{ currentImage.title }}</div>
+                <div class="image-title">{{ currentImage?.title || '' }}</div>
                 <div class="image-counter">{{ currentIndex + 1 }} / {{ images.length }}</div>
               </div>
             </div>

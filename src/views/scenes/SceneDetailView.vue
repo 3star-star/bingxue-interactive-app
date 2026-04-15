@@ -13,16 +13,15 @@
       <p>加载中...</p>
     </div>
 
-    <!-- 全景查看器 -->
-    <PanoramaViewer
-      v-model:visible="showPanoramaViewer"
-      :images="scene?.panoramaImages || []"
-      :scene-name="scene?.name || ''"
-      @close="handlePanoramaClose"
-    />
-
     <!-- 场景内容 -->
     <template v-else>
+      <!-- 全景查看器 -->
+      <PanoramaViewer
+        v-model:visible="showPanoramaViewer"
+        :images="scene?.panoramaImages || []"
+        :scene-name="scene?.name || ''"
+        @close="handlePanoramaClose"
+      />
       <!-- 场景图片 -->
       <div class="scene-banner">
         <div class="scene-img-wrap">
