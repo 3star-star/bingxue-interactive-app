@@ -1,104 +1,83 @@
 <template>
   <div class="collection-view">
-    <!-- 页面头部 -->
-    <div class="collection-header">
+    <BackButton to="/profile" text="返回个人中心" />
+
+    <div class="page-header">
       <h2>我的收藏</h2>
-      <p>管理您收藏的冰雪知识和美景</p>
+      <p>管理你的冰雪知识与美景记录</p>
     </div>
 
-    <!-- 收藏分类标签 -->
-    <div class="collection-tabs">
-      <van-tabs v-model:active="activeTab">
+    <div class="tabs-wrap">
+      <van-tabs v-model:active="activeTab" color="#3B82F6" title-active-color="white" background="transparent">
         <van-tab title="知识点" name="knowledge" />
         <van-tab title="景点" name="scenes" />
         <van-tab title="成就" name="achievements" />
       </van-tabs>
     </div>
 
-    <!-- 知识点收藏 -->
-    <div v-if="activeTab === 'knowledge'" class="collection-content">
-      <div v-if="collectedKnowledge.length > 0" class="collection-grid">
-        <div v-for="item in collectedKnowledge"
-             :key="item.id"
-             class="collection-item"
-             @click="viewKnowledge(item)">
-          <div class="item-header">
-            <span class="category-tag"
-                  :style="{ backgroundColor: getCategoryColor(item.category) }">
-              {{ getCategoryName(item.category) }}
-            </span>
-            <van-icon name="bookmark" size="20" color="#FFD700" />
+    <!-- 知识点 -->
+    <div v-if="activeTab === 'knowledge'" class="tab-content">
+      <div v-if="collectedKnowledge.length > 0" class="items-list">
+        <div v-for="item in collectedKnowledge" :key="item.id" class="item-card">
+          <div class="item-left">
+            <van-icon name="bookmark" color="#FFD700" size="22" />
           </div>
-          <div class="item-content">
-            <h4>{{ item.title }}</h4>
-            <p>{{ item.description }}</p>
+          <div class="item-body">
+            <p class="item-title">{{ item.title }}</p>
+            <p class="item-sub">{{ item.category }} · 已完成</p>
           </div>
-          <div class="item-footer">
-            <van-button size="small" type="danger" @click.stop="removeFromCollection('knowledge', item.id)">
-              移除
-            </van-button>
-          </div>
+          <van-button size="mini" type="danger" plain @click.stop="removeKnowledge(item.id)">移除</van-button>
         </div>
       </div>
       <div v-else class="empty-state">
-        <van-icon name="bookmark" size="48" color="#999" />
-        <p>暂无收藏的知识点</p>
-        <van-button type="primary" @click="goToKnowledge">去探索</van-button>
+        <van-icon name="bookmark-o" size="52" color="rgba(255,255,255,0.3)" />
+        <p>暂无已完成的知识点</p>
+        <van-button type="primary" size="small" @click="router.push('/knowledge')">去探索</van-button>
       </div>
     </div>
 
-    <!-- 景点收藏 -->
-    <div v-if="activeTab === 'scenes'" class="collection-content">
-      <div v-if="collectedScenes.length > 0" class="collection-grid">
-        <div v-for="item in collectedScenes"
-             :key="item.id"
-             class="collection-item"
-             @click="viewScene(item)">
-          <div class="item-header">
-            <van-icon name="location" size="20" color="#10B981" />
+    <!-- 景点 -->
+    <div v-if="activeTab === 'scenes'" class="tab-content">
+      <div v-if="collectedScenes.length > 0" class="items-list">
+        <div v-for="item in collectedScenes" :key="item.id" class="item-card" @click="viewScene(item)">
+          <div class="item-left">
+            <van-icon name="location" color="#10B981" size="22" />
           </div>
-          <div class="item-content">
-            <h4>{{ item.name }}</h4>
-            <p>{{ item.location }}</p>
+          <div class="item-body">
+            <p class="item-title">{{ item.name }}</p>
+            <p class="item-sub">{{ item.location }}</p>
           </div>
-          <div class="item-footer">
-            <van-button size="small" type="danger" @click.stop="removeFromCollection('scenes', item.id)">
-              移除
-            </van-button>
+          <div class="item-actions">
+            <van-button size="mini" type="primary" plain @click.stop="viewScene(item)">查看</van-button>
+            <van-button size="mini" type="danger" plain @click.stop="removeScene(item.id)">移除</van-button>
           </div>
         </div>
       </div>
       <div v-else class="empty-state">
-        <van-icon name="location" size="48" color="#999" />
-        <p>暂无收藏的景点</p>
-        <van-button type="primary" @click="goToScenes">去探索</van-button>
+        <van-icon name="photo-o" size="52" color="rgba(255,255,255,0.3)" />
+        <p>暂无访问过的景点</p>
+        <van-button type="primary" size="small" @click="router.push('/scenes')">去探索</van-button>
       </div>
     </div>
 
-    <!-- 成就收藏 -->
-    <div v-if="activeTab === 'achievements'" class="collection-content">
-      <div v-if="collectedAchievements.length > 0" class="collection-grid">
-        <div v-for="item in collectedAchievements"
-             :key="item.id"
-             class="collection-item">
-          <div class="item-header">
-            <van-icon :name="getBadgeIcon(item.id)" size="20" color="#FFD700" />
+    <!-- 成就 -->
+    <div v-if="activeTab === 'achievements'" class="tab-content">
+      <div v-if="collectedAchievements.length > 0" class="items-list">
+        <div v-for="item in collectedAchievements" :key="item.id + item.unlockedAt" class="item-card">
+          <div class="item-left">
+            <van-icon :name="getBadgeIcon(item.id)" color="#FFD700" size="22" />
           </div>
-          <div class="item-content">
-            <h4>{{ item.title }}</h4>
-            <p>{{ formatDate(item.unlockedAt) }}</p>
+          <div class="item-body">
+            <p class="item-title">{{ item.title }}</p>
+            <p class="item-sub">{{ formatDate(item.unlockedAt) }}</p>
           </div>
-          <div class="item-footer">
-            <van-button size="small" type="warning" @click="shareAchievement(item)">
-              分享
-            </van-button>
-          </div>
+          <van-button size="mini" type="warning" plain @click="shareAchievement(item)">分享</van-button>
         </div>
       </div>
       <div v-else class="empty-state">
-        <van-icon name="trophy" size="48" color="#999" />
-        <p>暂无成就可展示</p>
-        <van-button type="primary" @click="goToGames">去挑战</van-button>
+        <van-icon name="trophy-o" size="52" color="rgba(255,255,255,0.3)" />
+        <p>暂无解锁的成就</p>
+        <van-button type="primary" size="small" @click="router.push('/games')">去挑战</van-button>
       </div>
     </div>
   </div>
@@ -108,110 +87,66 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
+import { scenesData } from '@/data/scenesData'
+import { knowledgeData } from '@/data/knowledgeData'
 import { showToast } from 'vant'
+import BackButton from '@/components/common/BackButton.vue'
 
 const router = useRouter()
 const userStore = useUserStore()
-
-// 状态
 const activeTab = ref('knowledge')
 
-// 计算属性
 const collectedKnowledge = computed(() => {
-  const allKnowledge = userStore.knowledgeProgress
-  return Object.entries(allKnowledge)
-    .filter(([id, progress]) => progress >= 100)
-    .map(([id, progress]) => {
-      // 这里需要从知识库中获取详细信息
-      const knowledge = knowledgeData.find(k => k.id === parseInt(id))
-      return knowledge ? { ...knowledge, progress } : null
-    })
+  return Object.entries(userStore.knowledgeProgress)
+    .filter(([, progress]) => progress >= 100)
+    .map(([id]) => knowledgeData.find(k => k.id === parseInt(id)))
     .filter(Boolean)
 })
 
 const collectedScenes = computed(() => {
-  return userStore.scenesVisited.map(sceneId => {
-    return scenesData.find(scene => scene.id === sceneId)
-  }).filter(Boolean)
+  return userStore.scenesVisited
+    .map(id => scenesData.find(s => s.id === id))
+    .filter(Boolean)
 })
 
-const collectedAchievements = computed(() => {
-  return userStore.unlockedBadges
-})
-
-// 方法
-const getCategoryColor = (categoryName) => {
-  const category = knowledgeCategories.find(c => c.name === categoryName)
-  return category ? category.color : '#999999'
-}
-
-const getCategoryName = (categoryId) => {
-  const category = knowledgeCategories.find(c => c.id === categoryId)
-  return category ? category.name : '其他'
-}
+const collectedAchievements = computed(() => userStore.unlockedBadges)
 
 const getBadgeIcon = (badgeId) => {
   const icons = {
-    level_up: 'gem',
-    knowledge_explorer: 'book',
-    scene_visitor: 'location',
-    game_master: 'trophy',
-    knowledge_start: 'lightbulb',
-    knowledge_intermediate: 'book-open',
-    knowledge_expert: 'award',
-    scene_explorer: 'compass',
-    scene_master: 'star',
-    login_3: 'clock',
-    login_7: 'calendar',
-    login_30: 'medal',
-    quiz_expert: 'question-circle'
+    level_up: 'gem', knowledge_explorer: 'book', scene_visitor: 'location',
+    game_master: 'trophy', knowledge_start: 'bulb', knowledge_intermediate: 'notes',
+    knowledge_expert: 'award', scene_explorer: 'map', scene_master: 'star',
+    login_3: 'clock', login_7: 'calendar', login_30: 'medal'
   }
   return icons[badgeId] || 'star'
 }
 
 const formatDate = (dateString) => {
-  const date = new Date(dateString)
-  return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
-}
-
-const viewKnowledge = (knowledge) => {
-  router.push(`/knowledge/${knowledge.id}`)
+  const d = new Date(dateString)
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 }
 
 const viewScene = (scene) => {
-  router.push(`/scenes/${scene.id}`)
+  router.push({ name: 'SceneDetail', query: { sceneId: scene.id } })
 }
 
-const removeFromCollection = (type, id) => {
-  if (confirm('确定要移除收藏吗？')) {
-    if (type === 'knowledge') {
-      // 重置知识点进度
-      userStore.knowledgeProgress[id] = 0
-    } else if (type === 'scenes') {
-      // 从访问记录中移除
-      const index = userStore.scenesVisited.indexOf(id)
-      if (index > -1) {
-        userStore.scenesVisited.splice(index, 1)
-      }
-    }
-    showToast('已移除收藏')
+const removeKnowledge = (id) => {
+  userStore.knowledgeProgress[id] = 0
+  userStore.saveToLocalStorage()
+  showToast('已移除')
+}
+
+const removeScene = (id) => {
+  const idx = userStore.scenesVisited.indexOf(id)
+  if (idx > -1) {
+    userStore.scenesVisited.splice(idx, 1)
+    userStore.saveToLocalStorage()
   }
+  showToast('已移除')
 }
 
 const shareAchievement = (achievement) => {
-  showToast(`分享成就：${achievement.title}`)
-}
-
-const goToKnowledge = () => {
-  router.push('/knowledge')
-}
-
-const goToScenes = () => {
-  router.push('/scenes')
-}
-
-const goToGames = () => {
-  router.push('/games')
+  showToast(`已分享：${achievement.title}`)
 }
 </script>
 
@@ -220,110 +155,116 @@ const goToGames = () => {
 
 .collection-view {
   min-height: 100vh;
-  padding: $spacing-xl 0;
   background: linear-gradient(to bottom, #1e3c72 0%, #2a5298 100%);
+  padding-bottom: 40px;
 }
 
-.collection-header {
+.page-header {
   text-align: center;
-  padding: 0 $spacing-xl $spacing-lg;
-  margin-bottom: $spacing-lg;
+  padding: 70px $spacing-xl $spacing-lg;
 
   h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: white;
-    margin-bottom: $spacing-sm;
+    margin-bottom: 6px;
   }
 
   p {
-    font-size: 1.1rem;
-    color: $text-secondary;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
   }
 }
 
-.collection-tabs {
-  margin: 0 $spacing-xl $spacing-lg;
+.tabs-wrap {
+  margin: 0 $spacing-lg $spacing-lg;
+
+  :deep(.van-tabs__wrap) {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+  }
+
+  :deep(.van-tab) {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  :deep(.van-tab--active) {
+    color: white;
+  }
 }
 
-.collection-content {
-  padding: 0 $spacing-xl;
+.tab-content {
+  padding: 0 $spacing-lg;
 }
 
-.collection-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: $spacing-lg;
+.items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.collection-item {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: $radius-lg;
-  padding: $spacing-lg;
-  transition: all $transition-normal;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+.item-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
   cursor: pointer;
+  transition: background 0.2s;
 
-  &:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.15);
+  &:active {
+    background: rgba(255, 255, 255, 0.14);
   }
 
-  .item-header {
+  .item-left {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: $spacing-md;
-
-    .category-tag {
-      padding: $spacing-xs $spacing-sm;
-      border-radius: $radius-sm;
-      font-size: 0.875rem;
-      color: white;
-    }
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
   }
 
-  .item-content {
-    margin-bottom: $spacing-md;
+  .item-body {
+    flex: 1;
+    min-width: 0;
 
-    h4 {
-      font-size: 1.25rem;
-      color: white;
-      margin-bottom: $spacing-sm;
-    }
-
-    p {
+    .item-title {
       font-size: 0.95rem;
-      color: $text-secondary;
-      line-height: 1.5;
+      color: white;
+      font-weight: 500;
+      margin-bottom: 3px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .item-sub {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.5);
     }
   }
 
-  .item-footer {
+  .item-actions {
     display: flex;
-    justify-content: flex-end;
+    gap: 6px;
+    flex-shrink: 0;
   }
 }
 
 .empty-state {
-  text-align: center;
-  padding: $spacing-xl;
-  color: rgba(255, 255, 255, 0.6);
-
-  .van-icon {
-    font-size: 4rem;
-    margin-bottom: $spacing-lg;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 60px 20px;
 
   p {
-    font-size: 1.1rem;
-    margin-bottom: $spacing-lg;
-  }
-}
-
-@media (max-width: $mobile) {
-  .collection-grid {
-    grid-template-columns: 1fr;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.5);
   }
 }
 </style>

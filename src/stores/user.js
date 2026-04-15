@@ -127,6 +127,9 @@ export const useUserStore = defineStore('user', {
 
     // 解锁成就
     unlockAchievement(type, title) {
+      // 防止重复解锁
+      if (this.unlockedBadges.some(b => b.id === type)) return
+
       const achievement = {
         id: type,
         title,

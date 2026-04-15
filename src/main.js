@@ -18,7 +18,9 @@ import {
   Cell,
   CellGroup,
   Switch,
-  Loading
+  Loading,
+  Dialog,
+  Slider
 } from 'vant'
 
 // 创建应用实例
@@ -44,6 +46,8 @@ app.use(Cell)
 app.use(CellGroup)
 app.use(Switch)
 app.use(Loading)
+app.use(Dialog)
+app.use(Slider)
 
 // 初始化用户状态
 const userStore = useUserStore()
