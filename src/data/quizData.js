@@ -397,6 +397,386 @@ export const quizQuestions = [
     points: 10,
     image: '/assets/images/skiing-health.jpg',
     keywords: ['滑雪', '健康', '运动']
+  },
+  {
+    id: 'jilin-1',
+    category: '吉林',
+    title: '长白山天池',
+    description: '了解长白山天池的特点',
+    question: '长白山天池是什么类型的湖泊？',
+    options: [
+      '淡水湖',
+      '火山口湖',
+      '冰川湖',
+      '人工湖'
+    ],
+    correctAnswer: 1,
+    difficulty: 2,
+    explanation: '长白山天池是中国最大的火山口湖，也是世界海拔最高的火山湖之一，海拔2189.1米。',
+    points: 15,
+    image: '/assets/images/changbaishan.jpg',
+    keywords: ['长白山', '天池', '火山湖']
+  },
+  {
+    id: 'jilin-2',
+    category: '吉林',
+    title: '雾凇奇观',
+    description: '吉林雾凇的形成条件',
+    question: '吉林雾凇岛的雾凇形成需要什么条件？',
+    options: [
+      '高温高湿',
+      '低温高湿且有水汽',
+      '干燥寒冷',
+      '温暖潮湿'
+    ],
+    correctAnswer: 1,
+    difficulty: 2,
+    explanation: '雾凇的形成需要低温（-20℃左右）、高湿度以及松花江不冻的江水提供充足水汽。',
+    points: 15,
+    image: '/assets/images/rime-island.jpg',
+    keywords: ['雾凇', '吉林', '自然奇观']
+  },
+  {
+    id: 'jilin-3',
+    category: '吉林',
+    title: '查干湖冬捕',
+    description: '查干湖冬捕的历史文化',
+    question: '查干湖冬捕的历史可以追溯到哪个朝代？',
+    options: [
+      '唐朝',
+      '辽金时期',
+      '明朝',
+      '清朝'
+    ],
+    correctAnswer: 1,
+    difficulty: 3,
+    explanation: '查干湖冬捕始于辽金时期，距今已有近千年历史，是国家级非物质文化遗产。',
+    points: 20,
+    image: '/assets/images/chagan-lake.jpg',
+    keywords: ['查干湖', '冬捕', '非遗']
+  },
+  {
+    id: 'jilin-4',
+    category: '吉林',
+    title: '北大湖滑雪场',
+    description: '北大湖滑雪场的特点',
+    question: '北大湖滑雪场最适合什么级别的滑雪者？',
+    options: [
+      '只适合初学者',
+      '只适合专业选手',
+      '各级别滑雪者都适合',
+      '只适合中级滑雪者'
+    ],
+    correctAnswer: 2,
+    difficulty: 1,
+    explanation: '北大湖滑雪场拥有不同难度的雪道，从初级到高级应有尽有，是亚洲最大的滑雪场之一。',
+    points: 10,
+    image: '/assets/images/beidahu.jpg',
+    keywords: ['北大湖', '滑雪场', '吉林']
+  },
+  {
+    id: 'jilin-5',
+    category: '吉林',
+    title: '净月潭冰雪',
+    description: '净月潭的冬季特色',
+    question: '净月潭国家森林公园被称为什么？',
+    options: [
+      '长春之肺',
+      '东北明珠',
+      '冰雪王国',
+      '森林之心'
+    ],
+    correctAnswer: 0,
+    difficulty: 2,
+    explanation: '净月潭被称为"长春之肺"，是亚洲最大的人工森林，冬季有丰富的冰雪活动。',
+    points: 15,
+    image: '/assets/images/jingyuetan.jpg',
+    keywords: ['净月潭', '森林公园', '长春']
+  },
+  {
+    id: 'jilin-6',
+    category: '吉林',
+    title: '松花湖度假区',
+    description: '万科松花湖度假区的特色',
+    question: '松花湖度假区最大的特色是什么？',
+    options: [
+      '温泉度假',
+      '山地滑雪与度假结合',
+      '冰雕展览',
+      '极限运动'
+    ],
+    correctAnswer: 1,
+    difficulty: 2,
+    explanation: '松花湖度假区是中国最大的滑雪度假区之一，将山地滑雪与度假酒店完美结合。',
+    points: 15,
+    image: '/assets/images/songhuahu.jpg',
+    keywords: ['松花湖', '度假区', '滑雪']
+  },
+  {
+    id: 'tradition-1',
+    category: '传统',
+    title: '东北冰雪文化',
+    description: '东北地区的冰雪传统',
+    question: '东北地区传统的冰雪游戏是什么？',
+    options: [
+      '打雪仗、堆雪人',
+      '抽冰尜',
+      '滑冰车',
+      '以上都是'
+    ],
+    correctAnswer: 3,
+    difficulty: 1,
+    explanation: '东北地区有丰富的冰雪游戏传统，包括打雪仗、堆雪人、抽冰尜、滑冰车等。',
+    points: 10,
+    image: '/assets/images/ice-games.jpg',
+    keywords: ['东北', '传统游戏', '冰雪']
+  },
+  {
+    id: 'food-1',
+    category: '美食',
+    title: '冰雪美食',
+    description: '东北冰雪季节的特色美食',
+    question: '东北冬季最具特色的美食是什么？',
+    options: [
+      '冻梨、冻柿子',
+      '铁锅炖',
+      '杀猪菜',
+      '以上都是'
+    ],
+    correctAnswer: 3,
+    difficulty: 1,
+    explanation: '东北冬季美食丰富，冻梨、冻柿子是特色水果，铁锅炖和杀猪菜是传统美食。',
+    points: 10,
+    image: '/assets/images/dongbei-food.jpg',
+    keywords: ['东北美食', '冬季', '特色']
+  },
+  {
+    id: 'festival-1',
+    category: '节庆',
+    title: '冰雪节庆',
+    description: '吉林地区的冰雪节庆活动',
+    question: '吉林国际雾凇冰雪节通常在什么时候举办？',
+    options: [
+      '11月',
+      '12月至次年2月',
+      '3月',
+      '全年'
+    ],
+    correctAnswer: 1,
+    difficulty: 2,
+    explanation: '吉林国际雾凇冰雪节通常在12月至次年2月举办，是吉林冬季最重要的旅游节庆。',
+    points: 15,
+    image: '/assets/images/ice-festival.jpg',
+    keywords: ['冰雪节', '吉林', '节庆']
+  },
+  {
+    id: 'wildlife-1',
+    category: '野生动物',
+    title: '长白山野生动物',
+    description: '长白山地区的珍稀动物',
+    question: '长白山地区的国家一级保护动物是？',
+    options: [
+      '东北虎',
+      '梅花鹿',
+      '黑熊',
+      '野猪'
+    ],
+    correctAnswer: 0,
+    difficulty: 2,
+    explanation: '东北虎是长白山地区的国家一级保护动物，也是中国最珍稀的野生动物之一。',
+    points: 15,
+    image: '/assets/images/siberian-tiger.jpg',
+    keywords: ['东北虎', '长白山', '保护动物']
+  },
+  {
+    id: 'photography-1',
+    category: '摄影',
+    title: '冰雪摄影技巧',
+    description: '拍摄冰雪景观的技巧',
+    question: '拍摄雪景时，相机曝光应该如何调整？',
+    options: [
+      '减少曝光',
+      '增加曝光',
+      '保持正常',
+      '随意调整'
+    ],
+    correctAnswer: 1,
+    difficulty: 2,
+    explanation: '拍摄雪景时应增加曝光补偿（+1到+2档），因为相机测光会把白雪当成灰色。',
+    points: 15,
+    image: '/assets/images/snow-photography.jpg',
+    keywords: ['摄影', '雪景', '曝光']
+  },
+  {
+    id: 'climate-1',
+    category: '气候',
+    title: '吉林气候特点',
+    description: '吉林地区的气候特征',
+    question: '吉林地区冬季平均气温大约是多少？',
+    options: [
+      '0℃到-5℃',
+      '-10℃到-20℃',
+      '-25℃到-35℃',
+      '-40℃以下'
+    ],
+    correctAnswer: 1,
+    difficulty: 2,
+    explanation: '吉林地区冬季平均气温在-10℃到-20℃之间，是典型的温带季风气候。',
+    points: 15,
+    image: '/assets/images/jilin-climate.jpg',
+    keywords: ['吉林', '气候', '温度']
+  },
+  {
+    id: 'architecture-1',
+    category: '建筑',
+    title: '冰雪建筑',
+    description: '冰雪建筑的特点',
+    question: '冰屋（Igloo）最早是哪个民族的传统建筑？',
+    options: [
+      '蒙古族',
+      '因纽特人',
+      '萨米人',
+      '鄂温克族'
+    ],
+    correctAnswer: 1,
+    difficulty: 2,
+    explanation: '冰屋是北极地区因纽特人的传统建筑，用冰块堆砌而成，具有良好的保温效果。',
+    points: 15,
+    image: '/assets/images/igloo.jpg',
+    keywords: ['冰屋', '因纽特人', '建筑']
+  },
+  {
+    id: 'tourism-1',
+    category: '旅游',
+    title: '冰雪旅游准备',
+    description: '冰雪旅游的准备工作',
+    question: '去长白山旅游，最重要的准备是什么？',
+    options: [
+      '防寒保暖装备',
+      '防晒用品',
+      '雨具',
+      '游泳装备'
+    ],
+    correctAnswer: 0,
+    difficulty: 1,
+    explanation: '长白山冬季气温极低，防寒保暖装备是最重要的，包括羽绒服、帽子、手套等。',
+    points: 10,
+    image: '/assets/images/winter-gear.jpg',
+    keywords: ['旅游', '准备', '保暖']
+  },
+  {
+    id: 'legend-1',
+    category: '传说',
+    title: '长白山传说',
+    description: '长白山的神话传说',
+    question: '长白山在满族文化中被称为什么？',
+    options: [
+      '圣山',
+      '神山',
+      '长白山',
+      '白头山'
+    ],
+    correctAnswer: 0,
+    difficulty: 2,
+    explanation: '长白山在满族文化中被称为"圣山"，是满族的发祥地，有着深厚的文化底蕴。',
+    points: 15,
+    image: '/assets/images/changbai-legend.jpg',
+    keywords: ['长白山', '满族', '圣山']
+  },
+  {
+    id: 'sport-technique-1',
+    category: '运动技巧',
+    title: '滑雪转弯技巧',
+    description: '学习滑雪转弯的方法',
+    question: '滑雪时，犁式转弯适合什么级别的滑雪者？',
+    options: [
+      '高级滑雪者',
+      '初学者',
+      '专业运动员',
+      '不适合任何人'
+    ],
+    correctAnswer: 1,
+    difficulty: 1,
+    explanation: '犁式转弯是初学者最基本的转弯技巧，通过形成"V"字形来控制速度和方向。',
+    points: 10,
+    image: '/assets/images/snowplow-turn.jpg',
+    keywords: ['滑雪', '转弯', '初学者']
+  },
+  {
+    id: 'ecology-1',
+    category: '生态',
+    title: '冰雪生态保护',
+    description: '保护冰雪生态环境',
+    question: '为什么要保护冰川和雪山？',
+    options: [
+      '它们是重要的淡水资源',
+      '影响全球气候',
+      '是珍稀动植物的栖息地',
+      '以上都是'
+    ],
+    correctAnswer: 3,
+    difficulty: 2,
+    explanation: '冰川和雪山是重要的淡水资源，影响全球气候，也是珍稀动植物的栖息地。',
+    points: 15,
+    image: '/assets/images/glacier-protection.jpg',
+    keywords: ['冰川', '保护', '生态']
+  },
+  {
+    id: 'winter-sports-1',
+    category: '冬季运动',
+    title: '冬季两项',
+    description: '了解冬季两项运动',
+    question: '冬季两项运动包括哪两个项目？',
+    options: [
+      '滑雪和滑冰',
+      '越野滑雪和射击',
+      '跳台滑雪和速滑',
+      '冰球和花滑'
+    ],
+    correctAnswer: 1,
+    difficulty: 2,
+    explanation: '冬季两项是越野滑雪和射击的结合，是冬奥会的正式比赛项目。',
+    points: 15,
+    image: '/assets/images/biathlon.jpg',
+    keywords: ['冬季两项', '越野滑雪', '射击']
+  },
+  {
+    id: 'ice-formation-1',
+    category: '科学知识',
+    title: '冰的形成过程',
+    description: '了解冰的形成',
+    question: '水在什么温度下开始结冰？',
+    options: [
+      '-10℃',
+      '0℃',
+      '5℃',
+      '-5℃'
+    ],
+    correctAnswer: 1,
+    difficulty: 1,
+    explanation: '纯水在0℃（标准大气压下）开始结冰，这是水的凝固点。',
+    points: 10,
+    image: '/assets/images/ice-formation.jpg',
+    keywords: ['冰', '凝固点', '温度']
+  },
+  {
+    id: 'winter-safety-1',
+    category: '冬季安全',
+    title: '冰面安全',
+    description: '冰面活动的安全知识',
+    question: '在冰面上行走，冰层厚度至少要达到多少才安全？',
+    options: [
+      '5厘米',
+      '10厘米',
+      '15厘米',
+      '20厘米'
+    ],
+    correctAnswer: 2,
+    difficulty: 2,
+    explanation: '冰层厚度至少要达到15厘米才能安全行走，低于这个厚度有破冰危险。',
+    points: 15,
+    image: '/assets/images/ice-safety.jpg',
+    keywords: ['冰面', '安全', '厚度']
   }
 ]
 
