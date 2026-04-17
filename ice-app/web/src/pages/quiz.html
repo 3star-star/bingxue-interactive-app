@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>冰雪知识竞赛</title>
+  <link rel="stylesheet" href="../styles/quiz.css">
+</head>
+<body>
+  <div class="quiz-container">
+    <!-- 开始界面 -->
+    <div id="start-screen" class="screen active">
+      <div class="header">
+        <h1>❄️ 冰雪知识竞赛</h1>
+        <p class="subtitle">测试你的冰雪知识储备</p>
+      </div>
+
+      <div class="quiz-info">
+        <div class="info-item">
+          <span class="info-label">题目数量</span>
+          <span class="info-value" id="total-questions">10</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">答题时间</span>
+          <span class="info-value">不限时</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="start-btn">开始答题</button>
+    </div>
+
+    <!-- 答题界面 -->
+    <div id="quizSection" class="screen active">
+      <div class="quiz-header">
+        <button class="btn-back" id="backToStart">← 返回</button>
+        <div class="progress-info">
+          <span id="currentQuestion">1</span> / <span id="totalQuestions">10</span>
+        </div>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <div class="question-card">
+        <div class="question-category" id="questionCategory">基础</div>
+        <h2 class="question-title" id="questionTitle">题目加载中...</h2>
+        <p class="question-description" id="questionDescription" style="color: #666; margin-bottom: 20px;"></p>
+
+        <div class="options-container" id="optionsContainer">
+          <!-- 选项将通过 JS 动态生成 -->
+        </div>
+      </div>
+
+      <div class="quiz-actions">
+        <button class="btn btn-secondary" id="prevBtn" disabled>上一题</button>
+        <button class="btn btn-primary" id="nextBtn">下一题</button>
+        <button class="btn btn-primary" id="submitBtn" style="display: none;">提交答案</button>
+      </div>
+    </div>
+
+    <!-- 结果界面 -->
+    <div id="resultSection" class="screen">
+      <div class="result-header">
+        <div class="result-icon">🎉</div>
+        <h1>答题完成！</h1>
+      </div>
+
+      <div class="result-stats">
+        <div class="result-item">
+          <span class="result-label">总题数</span>
+          <span class="result-value" id="totalQuestionsResult">10</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">答对</span>
+          <span class="result-value correct" id="correctCount">0</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">答错</span>
+          <span class="result-value wrong" id="wrongCount">0</span>
+        </div>
+        <div class="result-item highlight">
+          <span class="result-label">正确率</span>
+          <span class="result-value accuracy" id="accuracyRate">0%</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">总得分</span>
+          <span class="result-value" id="totalScore">0</span>
+        </div>
+      </div>
+
+      <p id="resultMessage" style="font-size: 1.2rem; margin: 20px 0; text-align: center;"></p>
+
+      <div class="result-actions">
+        <button class="btn btn-primary" id="retryBtn">重新答题</button>
+        <button class="btn btn-outline" id="backBtn">返回知识中心</button>
+      </div>
+    </div>
+
+    <!-- 详情界面 -->
+    <div id="review-screen" class="screen">
+      <div class="review-header">
+        <button class="btn-back" id="review-back-btn">← 返回结果</button>
+        <h2>答题详情</h2>
+      </div>
+
+      <div class="review-list" id="review-list">
+        <!-- 详情将通过 JS 动态生成 -->
+      </div>
+    </div>
+  </div>
+
+  <script src="../scripts/quizData.js"></script>
+  <script src="../scripts/quiz.js"></script>
+</body>
+</html>
