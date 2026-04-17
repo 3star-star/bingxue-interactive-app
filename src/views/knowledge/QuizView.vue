@@ -103,6 +103,10 @@
             <span class="result-value wrong">{{ questions.length - correctCount }}</span>
           </div>
           <div class="result-item">
+            <span class="result-label">正确率</span>
+            <span class="result-value accuracy">{{ accuracyRate }}%</span>
+          </div>
+          <div class="result-item">
             <span class="result-label">总得分</span>
             <span class="result-value score">{{ score }}</span>
           </div>
@@ -150,6 +154,12 @@ const quizCompleted = ref(false)
 
 // 当前题目
 const currentQuestion = computed(() => questions.value[currentQuestionIndex.value])
+
+// 正确率
+const accuracyRate = computed(() => {
+  if (questions.value.length === 0) return 0
+  return Math.round((correctCount.value / questions.value.length) * 100)
+})
 
 // 获取难度文本
 const getDifficultyText = (difficulty) => {
