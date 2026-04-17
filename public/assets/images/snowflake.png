@@ -1,0 +1,13 @@
+<!-- 雪花图标 SVG -->
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(100,100)">
+    <path d="M 0,-80 L 0,80 M -69.3,-40 L 69.3,40 M -40,-69.3 L 40,69.3" stroke="white" stroke-width="4"/>
+    <circle cx="0" cy="-80" r="8" fill="white"/>
+    <circle cx="0" cy="80" r="8" fill="white"/>
+    <circle cx="-69.3" cy="-40" r="8" fill="white"/>
+    <circle cx="69.3" cy="40" r="8" fill="white"/>
+    <circle cx="-40" cy="-69.3" r="8" fill="white"/>
+    <circle cx="40" cy="69.3" r="8" fill="white"/>
+    <circle cx="0" cy="0" r="12" fill="white"/>
+  </g>
+</svg>
