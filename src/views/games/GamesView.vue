@@ -141,65 +141,6 @@
       </div>
     </div>
 
-    <!-- 知识竞赛模态框 -->
-    <van-popup
-      v-model:show="showQuiz"
-      position="bottom"
-      :style="{ height: '80%' }"
-      round
-      closeable>
-
-      <div class="quiz-container">
-        <div class="quiz-header">
-          <h3>知识竞赛</h3>
-          <div class="quiz-timer">
-            <van-icon name="clock" />
-            <span>{{ quizTime }}秒</span>
-          </div>
-        </div>
-
-        <div class="quiz-content">
-          <div class="question-card" v-if="currentQuestion">
-            <div class="question-info">
-              <span class="question-number">题目 {{ currentQuestionIndex + 1 }}</span>
-              <van-progress :percentage="getQuizProgress()" stroke-width="4" />
-            </div>
-
-            <h4>{{ currentQuestion.question }}</h4>
-
-            <div class="quiz-options">
-              <div v-for="(option, index) in currentQuestion.options"
-                   :key="index"
-                   class="quiz-option"
-                   :class="{
-                     'selected': selectedOption === index,
-                     'correct': showResult && index === currentQuestion.correct,
-                     'wrong': showResult && selectedOption === index && index !== currentQuestion.correct
-                   }"
-                   @click="selectQuizOption(index)">
-                {{ option }}
-              </div>
-            </div>
-
-            <van-button
-              type="primary"
-              block
-              @click="submitQuizAnswer"
-              :disabled="selectedOption === null || showResult">
-              {{ showResult ? '下一题' : '提交答案' }}
-            </van-button>
-          </div>
-        </div>
-
-        <!-- 成就展示 -->
-        <div class="achievement-popup" v-if="showAchievement">
-          <van-icon name="star" size="40" color="#FFD700" />
-          <h3>成就解锁！</h3>
-          <p>{{ unlockedAchievement?.title }}</p>
-          <van-button type="primary" @click="continueQuiz">继续</van-button>
-        </div>
-      </div>
-    </van-popup>
 
     <!-- 每日挑战模态框 -->
     <van-popup
@@ -244,22 +185,16 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { showToast } from 'vant'
 import BackButton from '@/components/common/BackButton.vue'
 
+const router = useRouter()
 const userStore = useUserStore()
 
 // 状态
-const showQuiz = ref(false)
 const showDailyChallenge = ref(false)
-const showAchievement = ref(false)
-const unlockedAchievement = ref(null)
-const quizTime = ref(30)
-const currentQuestionIndex = ref(0)
-const selectedOption = ref(null)
-const showResult = ref(false)
-const quizScore = ref(0)
 
 // 模拟数据
 const leaderboard = ref([
@@ -331,35 +266,7 @@ const dailyTasks = ref([
   }
 ])
 
-// 模拟题目
-const questions = ref([
-  {
-    question: "雪花的基本形状是什么？",
-    options: ["六边形", "圆形", "三角形", "正方形"],
-    correct: 0
-  },
-  {
-    question: "冰的密度比水：",
-    options: ["大", "小", "相同", "不确定"],
-    correct: 1
-  },
-  {
-    question: "滑雪起源于哪个国家？",
-    options: ["中国", "日本", "挪威", "瑞士"],
-    correct: 2
-  },
-  {
-    question: "雪崩的发生与哪个因素关系最大？",
-    options: ["温度", "风力", "坡度", "积雪厚度"],
-    correct: 3
-  }
-])
-
 // 计算属性
-const currentQuestion = computed(() => {
-  return questions.value[currentQuestionIndex.value]
-})
-
 const userProgress = computed(() => {
   return userStore.featureAccess
 })
@@ -412,11 +319,8 @@ const refreshLeaderboard = () => {
 }
 
 const startQuiz = () => {
-  showQuiz.value = true
-  currentQuestionIndex.value = 0
-  selectedOption.value = null
-  showResult.value = false
-  quizScore.value = 0
+  // 跳转到知识竞赛页面
+  router.push('/quiz')
 
   // 记录参与
   userStore.recordFeatureAccess('quiz')
@@ -428,75 +332,6 @@ const startDailyChallenge = () => {
 
 const joinWeeklyContest = () => {
   showToast('周赛即将开始，敬请期待！')
-}
-
-// 选择选项
-const selectQuizOption = (index) => {
-  if (!showResult.value) {
-    selectedOption.value = index
-  }
-}
-
-// 提交答案
-const submitQuizAnswer = () => {
-  if (selectedOption.value === null) return
-
-  showResult.value = true
-
-  if (selectedOption.value === currentQuestion.value.correct) {
-    quizScore.value += 10
-    userStore.addPoints(10)
-  }
-
-  // 检查是否完成
-  setTimeout(() => {
-    if (currentQuestionIndex.value < questions.value.length - 1) {
-      currentQuestionIndex.value++
-      selectedOption.value = null
-      showResult.value = false
-    } else {
-      // 完成测验
-      completeQuiz()
-    }
-  }, 1500)
-}
-
-// 完成测验
-const completeQuiz = () => {
-  showQuiz.value = false
-
-  // 更新统计
-  const userInfo = wx.getStorageSync('userInfo') || {}
-  userInfo.quizStats = userInfo.quizStats || {}
-  userInfo.quizStats.played = (userInfo.quizStats.played || 0) + 1
-  userInfo.quizStats.score = Math.max(userInfo.quizStats.score || 0, quizScore.value)
-  wx.setStorageSync('userInfo', userInfo)
-
-  showToast(`测验完成！得分：${quizScore.value}分`)
-
-  // 检查成就
-  if (quizScore.value >= 30) {
-    unlockAchievement('quiz_expert', '知识达人')
-  }
-}
-
-// 继续测验
-const continueQuiz = () => {
-  showAchievement.value = false
-  currentQuestionIndex.value++
-  selectedOption.value = null
-  showResult.value = false
-}
-
-// 解锁成就
-const unlockAchievement = (type, title) => {
-  unlockedAchievement.value = { id: type, title }
-  showAchievement.value = true
-}
-
-// 获取测验进度
-const getQuizProgress = () => {
-  return ((currentQuestionIndex.value + 1) / questions.value.length) * 100
 }
 
 // 领取每日奖励
@@ -816,105 +651,6 @@ const loadDailyTasks = () => {
   }
 }
 
-.quiz-container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: $spacing-md;
-
-  .quiz-header {
-    margin-bottom: $spacing-lg;
-
-    h3 {
-      font-size: 1.5rem;
-      color: white;
-      margin-bottom: $spacing-sm;
-    }
-
-    .quiz-timer {
-      display: flex;
-      align-items: center;
-      gap: $spacing-xs;
-      font-size: 1.1rem;
-      color: #FFD700;
-    }
-  }
-
-  .quiz-content {
-    flex: 1;
-    overflow-y: auto;
-  }
-
-  .achievement-popup {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 215, 0, 0.9);
-    padding: $spacing-xl;
-    border-radius: $radius-lg;
-    text-align: center;
-    color: #333;
-    width: 80%;
-
-    h3 {
-      font-size: 1.5rem;
-      margin-bottom: $spacing-sm;
-    }
-  }
-}
-
-.daily-challenge-container {
-  padding: $spacing-md;
-
-  h3 {
-    font-size: 1.5rem;
-    color: white;
-    margin-bottom: $spacing-lg;
-    text-align: center;
-  }
-
-  .task-list {
-    margin-bottom: $spacing-xl;
-
-    .task-item {
-      display: flex;
-      align-items: center;
-      gap: $spacing-md;
-      padding: $spacing-md;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: $radius-md;
-      margin-bottom: $spacing-sm;
-
-      &.completed {
-        background: rgba(16, 185, 129, 0.1);
-        border: 1px solid rgba(16, 185, 129, 0.3);
-      }
-
-      .task-checkbox {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .task-info {
-        flex: 1;
-
-        h4 {
-          color: white;
-          margin-bottom: $spacing-xs;
-        }
-
-        p {
-          font-size: 0.9rem;
-          color: $text-secondary;
-        }
-      }
-    }
-  }
-}
 
 @media (max-width: $mobile) {
   .game-card {
