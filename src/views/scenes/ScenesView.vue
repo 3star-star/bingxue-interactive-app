@@ -158,6 +158,7 @@ import { useUserStore } from '@/stores/user'
 import { scenesData, ambientSounds } from '@/data/scenesData'
 import { showToast } from 'vant'
 import BackButton from '@/components/common/BackButton.vue'
+import { getImagePath } from '@/utils/imagePath'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -187,7 +188,7 @@ const isSceneVisited = (sceneId) => {
 // 获取场景图片
 const getSceneImage = (sceneId) => {
   const scene = scenesData.find(s => s.id === sceneId)
-  return scene?.image || 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=800&q=80'
+  return getImagePath(scene?.image || '/assets/images/changbai-tianchi/tianchi-1.jpg')
 }
 
 // 获取音效名称

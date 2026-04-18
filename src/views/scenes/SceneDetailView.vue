@@ -26,7 +26,7 @@
       <div class="scene-banner">
         <div class="scene-img-wrap">
           <img
-            :src="scene.coverImage"
+            :src="getImagePath(scene.coverImage)"
             :alt="scene.name"
             class="scene-img"
             @error="handleImgError"
@@ -118,6 +118,7 @@ import { useUserStore } from '@/stores/user'
 import { scenesData } from '@/data/scenesData'
 import { showToast } from 'vant'
 import PanoramaViewer from '@/components/common/PanoramaViewer.vue'
+import { getImagePath } from '@/utils/imagePath'
 
 const router = useRouter()
 const route = useRoute()
@@ -128,7 +129,7 @@ const showPanoramaViewer = ref(false)
 // 每个场景的详细信息（扩展 scenesData 中没有的字段）
 const sceneDetails = {
   1: {
-    coverImage: 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=800&q=80',
+    coverImage: '/assets/images/changbai-tianchi/tianchi-1.jpg',
     fullDescription: '长白山天池位于吉林省延边朝鲜族自治州，是中国最深的湖泊，也是中朝两国的界湖。天池海拔2189.1米，是一座休眠火山口湖。冬季的长白山银装素裹，天池冰封，周围群峰环绕，景色壮美。这里不仅有壮观的自然景观，还有丰富的温泉资源和独特的生态系统。',
     tags: ['吉林', '火山湖', '温泉', '世界遗产'],
     highlights: [
@@ -144,7 +145,7 @@ const sceneDetails = {
     ]
   },
   2: {
-    coverImage: 'https://images.unsplash.com/photo-1548777123-e216912df7d8?w=800&q=80',
+    coverImage: '/assets/images/wusong-island/wushong-1.jpg',
     fullDescription: '雾凇岛位于吉林省吉林市龙潭区乌拉街满族镇，是松花江上的一座小岛。每年冬季，由于松花江上游丰满水电站的影响，江水不结冰，江面上升腾的水汽遇冷凝结在岸边的树木上，形成壮观的雾凇景观。雾凇岛的雾凇是中国四大自然奇观之一，被誉为"人间仙境"。',
     tags: ['吉林', '雾凇奇观', '摄影天堂', '自然奇观'],
     highlights: [
@@ -160,7 +161,7 @@ const sceneDetails = {
     ]
   },
   3: {
-    coverImage: 'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800&q=80',
+    coverImage: '/assets/images/jingyuetan/jingyuetan-1.jpg',
     fullDescription: '净月潭国家森林公园位于吉林省长春市东南部，距市中心仅18公里，是长春市的"都市绿肺"。公园内有亚洲最大的人工林海，森林覆盖率达96%。冬季的净月潭银装素裹，湖面结冰，可以进行各种冰上活动。这里还有专业的滑雪场，是长春市民冬季休闲的好去处。',
     tags: ['吉林', '森林公园', '滑雪', '冰雪运动'],
     highlights: [
@@ -176,7 +177,7 @@ const sceneDetails = {
     ]
   },
   4: {
-    coverImage: 'https://images.unsplash.com/photo-1551582045-6ec9c11d8697?w=800&q=80',
+    coverImage: '/assets/images/beidahu/beidahu-1.jpg',
     fullDescription: '北大湖滑雪场位于吉林省吉林市永吉县北大湖镇，距吉林市区53公里。这里是中国著名的滑雪胜地，曾举办过多项国际滑雪赛事。雪场拥有优质的粉雪，雪期长达150天，是专业滑雪爱好者的首选。北大湖三面环山，冬季平均气温-10℃，是理想的滑雪度假胜地。',
     tags: ['吉林', '专业滑雪', '国际赛事', '粉雪天堂'],
     highlights: [
@@ -192,7 +193,7 @@ const sceneDetails = {
     ]
   },
   5: {
-    coverImage: 'https://images.unsplash.com/photo-1484820540004-14229fe36ca4?w=800&q=80',
+    coverImage: '/assets/images/chagan/chagan-1.jpg',
     fullDescription: '查干湖位于吉林省松原市前郭尔罗斯蒙古族自治县，是中国十大淡水湖之一。查干湖冬捕是一项有着千年历史的传统渔猎活动，被列入国家级非物质文化遗产。每年冬季，渔民们在冰封的湖面上进行传统的冬捕作业，场面壮观。游客可以观看冬捕仪式，品尝新鲜的查干湖鱼，体验独特的渔猎文化。',
     tags: ['吉林', '冬捕文化', '非遗', '民俗体验'],
     highlights: [
@@ -208,7 +209,7 @@ const sceneDetails = {
     ]
   },
   6: {
-    coverImage: 'https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&q=80',
+    coverImage: '/assets/images/songhuahu/songhuahu-1.jpg',
     fullDescription: '万科松花湖度假区位于吉林省吉林市丰满区，是国际级滑雪度假区。度假区依托松花湖和大青山的自然资源，打造了集滑雪、住宿、餐饮、娱乐于一体的综合性度假胜地。这里拥有中国最长的雪道，雪质优良，设施完善，是家庭滑雪度假的理想选择。',
     tags: ['吉林', '度假胜地', '家庭滑雪', '一站式服务'],
     highlights: [

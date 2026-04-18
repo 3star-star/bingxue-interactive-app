@@ -16,7 +16,7 @@
           <transition name="slide-fade" mode="out-in">
             <div :key="currentIndex" class="image-wrapper">
               <img
-                :src="currentImage?.url || ''"
+                :src="getImagePath(currentImage?.url || '')"
                 :alt="currentImage?.title || ''"
                 class="panorama-image"
                 @error="handleImageError"
@@ -47,7 +47,7 @@
               :class="{ active: index === currentIndex }"
               @click="goToImage(index)"
             >
-              <img :src="img.url" :alt="img.title">
+              <img :src="getImagePath(img.url)" :alt="img.title">
               <div class="thumbnail-overlay">
                 <span>{{ img.title }}</span>
               </div>
@@ -68,6 +68,7 @@
 <script setup>
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { showToast } from 'vant'
+import { getImagePath } from '@/utils/imagePath'
 
 const props = defineProps({
   visible: {
@@ -104,7 +105,7 @@ const preloadImages = () => {
       image.onload = () => {
         imagesLoaded.value.add(index)
       }
-      image.src = img.url
+      image.src = getImagePath(img.url)
     }
   })
 }
