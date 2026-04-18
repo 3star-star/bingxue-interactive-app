@@ -186,8 +186,8 @@ const isSceneVisited = (sceneId) => {
 
 // 获取场景图片
 const getSceneImage = (sceneId) => {
-  // 这里应该根据场景ID返回对应的图片
-  return `/assets/images/scenes/${sceneId}.jpg`
+  const scene = scenesData.find(s => s.id === sceneId)
+  return scene?.image || 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=800&q=80'
 }
 
 // 获取音效名称

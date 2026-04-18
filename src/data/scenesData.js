@@ -5,7 +5,7 @@ export const scenesData = [
     name: "长白山天池",
     location: "吉林省延边州",
     description: "中国最美的火山湖，冬季冰封雪裹，宛如仙境",
-    image: "assets/images/scenes/changbai.jpg",
+    image: "https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=800&q=80",
     panoramaImages: [
       { url: "assets/images/changbai-tianchi/tianchi-1.jpg", title: "" },
       { url: "assets/images/changbai-tianchi/tianchi-2.jpg", title: "" },
@@ -40,7 +40,7 @@ export const scenesData = [
     name: "雾凇岛",
     location: "吉林省吉林市",
     description: "中国四大自然奇观之一，冬季雾凇景观美不胜收",
-    image: "assets/images/scenes/wusong.jpg",
+    image: "https://images.unsplash.com/photo-1548777123-e216912df7d8?w=800&q=80",
     panoramaImages: [
       { url: "assets/images/wusong-island/wusong-1.jpg", title: "" },
       { url: "assets/images/wusong-island/wusong-2.jpg", title: "" },
@@ -75,7 +75,7 @@ export const scenesData = [
     name: "净月潭国家森林公园",
     location: "吉林省长春市",
     description: "亚洲最大的人工林海，冬季白雪覆盖，银装素裹",
-    image: "assets/images/scenes/jingyuetan.jpg",
+    image: "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800&q=80",
     panoramaImages: [
       { url: "assets/images/jingyuetan/jingyuetan-1.jpg", title: "" },
       { url: "assets/images/jingyuetan/jingyuetan-2.jpg", title: "" },
@@ -110,7 +110,7 @@ export const scenesData = [
     name: "北大湖滑雪场",
     location: "吉林省吉林市",
     description: "中国著名滑雪胜地，曾举办多项国际赛事",
-    image: "assets/images/scenes/beidahu.jpg",
+    image: "https://images.unsplash.com/photo-1551582045-6ec9c11d8697?w=800&q=80",
     panoramaImages: [
       { url: "assets/images/beidahu/beidahu-1.jpg", title: "" },
       { url: "assets/images/beidahu/beidahu-2.jpg", title: "" },
@@ -145,7 +145,7 @@ export const scenesData = [
     name: "查干湖冬捕",
     location: "吉林省松原市",
     description: "千年传承的冬捕文化，体验冰雪渔猎的独特魅力",
-    image: "assets/images/scenes/chagan.jpg",
+    image: "https://images.unsplash.com/photo-1484820540004-14229fe36ca4?w=800&q=80",
     panoramaImages: [
       { url: "assets/images/chagan/chagan-1.jpg", title: "" },
       { url: "assets/images/chagan/chagan-2.jpg", title: "" },
@@ -180,7 +180,7 @@ export const scenesData = [
     name: "万科松花湖度假区",
     location: "吉林省吉林市",
     description: "国际级滑雪度假区，设施完善，景色优美",
-    image: "assets/images/scenes/songhuahu.jpg",
+    image: "https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&q=80",
     panoramaImages: [
       { url: "assets/images/songhuahu/songhuahu-1.jpg", title: "" },
       { url: "assets/images/songhuahu/songhuahu-2.jpg", title: "" },
