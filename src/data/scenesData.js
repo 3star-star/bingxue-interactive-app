@@ -5,13 +5,13 @@ export const scenesData = [
     name: "长白山天池",
     location: "吉林省延边州",
     description: "中国最美的火山湖，冬季冰封雪裹，宛如仙境",
-    image: "https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=800&q=80",
+    image: "/assets/images/changbai-tianchi/tianchi-1.jpg",
     panoramaImages: [
-      { url: "assets/images/changbai-tianchi/tianchi-1.jpg", title: "" },
-      { url: "assets/images/changbai-tianchi/tianchi-2.jpg", title: "" },
-      { url: "assets/images/changbai-tianchi/tianchi-3.jpg", title: "" },
-      { url: "assets/images/changbai-tianchi/tianchi-4.jpg", title: "" },
-      { url: "assets/images/changbai-tianchi/tianchi-5.jpg", title: "" }
+      { url: "/assets/images/changbai-tianchi/tianchi-1.jpg", title: "天池全景" },
+      { url: "/assets/images/changbai-tianchi/tianchi-2.jpg", title: "冰封天池" },
+      { url: "/assets/images/changbai-tianchi/tianchi-3.jpg", title: "雪山环绕" },
+      { url: "/assets/images/changbai-tianchi/tianchi-4.jpg", title: "长白瀑布" },
+      { url: "/assets/images/changbai-tianchi/tianchi-5.jpg", title: "温泉雪景" }
     ],
     hotspots: [
       {
@@ -40,13 +40,13 @@ export const scenesData = [
     name: "雾凇岛",
     location: "吉林省吉林市",
     description: "中国四大自然奇观之一，冬季雾凇景观美不胜收",
-    image: "https://images.unsplash.com/photo-1548777123-e216912df7d8?w=800&q=80",
+    image: "/assets/images/wusong-island/wushong-1.jpg",
     panoramaImages: [
-      { url: "assets/images/wusong-island/wusong-1.jpg", title: "" },
-      { url: "assets/images/wusong-island/wusong-2.jpg", title: "" },
-      { url: "assets/images/wusong-island/wusong-3.jpg", title: "" },
-      { url: "assets/images/wusong-island/wusong-4.jpg", title: "" },
-      { url: "assets/images/wusong-island/wusong-5.jpg", title: "" }
+      { url: "/assets/images/wusong-island/wushong-1.jpg", title: "雾凇奇观" },
+      { url: "/assets/images/wusong-island/wusong-2.jpg", title: "松花江畔" },
+      { url: "/assets/images/wusong-island/wusong-3.jpg", title: "晶莹树挂" },
+      { url: "/assets/images/wusong-island/wusong-4.jpg", title: "雾凇长廊" },
+      { url: "/assets/images/wusong-island/wusong-5.jpg", title: "日出雾凇" }
     ],
     hotspots: [
       {
@@ -75,13 +75,13 @@ export const scenesData = [
     name: "净月潭国家森林公园",
     location: "吉林省长春市",
     description: "亚洲最大的人工林海，冬季白雪覆盖，银装素裹",
-    image: "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800&q=80",
+    image: "/assets/images/jingyuetan/jingyuetan-1.jpg",
     panoramaImages: [
-      { url: "assets/images/jingyuetan/jingyuetan-1.jpg", title: "" },
-      { url: "assets/images/jingyuetan/jingyuetan-2.jpg", title: "" },
-      { url: "assets/images/jingyuetan/jingyuetan-3.jpg", title: "" },
-      { url: "assets/images/jingyuetan/jingyuetan-4.jpg", title: "" },
-      { url: "assets/images/jingyuetan/jingyuetan-5.jpg", title: "" }
+      { url: "/assets/images/jingyuetan/jingyuetan-1.jpg", title: "林海雪原" },
+      { url: "/assets/images/jingyuetan/jingyuetan-2.jpg", title: "净月潭湖面" },
+      { url: "/assets/images/jingyuetan/jingyuetan-3.jpg", title: "森林步道" },
+      { url: "/assets/images/jingyuetan/jingyuetan-4.jpg", title: "滑雪场" },
+      { url: "/assets/images/jingyuetan/jingyuetan-5.jpg", title: "冰雪乐园" }
     ],
     hotspots: [
       {
@@ -110,13 +110,13 @@ export const scenesData = [
     name: "北大湖滑雪场",
     location: "吉林省吉林市",
     description: "中国著名滑雪胜地，曾举办多项国际赛事",
-    image: "https://images.unsplash.com/photo-1551582045-6ec9c11d8697?w=800&q=80",
+    image: "/assets/images/beidahu/beidahu-1.jpg",
     panoramaImages: [
-      { url: "assets/images/beidahu/beidahu-1.jpg", title: "" },
-      { url: "assets/images/beidahu/beidahu-2.jpg", title: "" },
-      { url: "assets/images/beidahu/beidahu-3.jpg", title: "" },
-      { url: "assets/images/beidahu/beidahu-4.jpg", title: "" },
-      { url: "assets/images/beidahu/beidahu-5.jpg", title: "" }
+      { url: "/assets/images/beidahu/beidahu-1.jpg", title: "专业雪道" },
+      { url: "/assets/images/beidahu/beidahu-2.jpg", title: "山顶观景" },
+      { url: "/assets/images/beidahu/beidahu-3.jpg", title: "初级练习区" },
+      { url: "/assets/images/beidahu/beidahu-4.jpg", title: "雪场全景" },
+      { url: "/assets/images/beidahu/beidahu-5.jpg", title: "粉雪天堂" }
     ],
     hotspots: [
       {
@@ -145,13 +145,13 @@ export const scenesData = [
     name: "查干湖冬捕",
     location: "吉林省松原市",
     description: "千年传承的冬捕文化，体验冰雪渔猎的独特魅力",
-    image: "https://images.unsplash.com/photo-1484820540004-14229fe36ca4?w=800&q=80",
+    image: "/assets/images/chagan/chagan-1.jpg",
     panoramaImages: [
-      { url: "assets/images/chagan/chagan-1.jpg", title: "" },
-      { url: "assets/images/chagan/chagan-2.jpg", title: "" },
-      { url: "assets/images/chagan/chagan-3.jpg", title: "" },
-      { url: "assets/images/chagan/chagan-4.jpg", title: "" },
-      { url: "assets/images/chagan/chagan-5.jpg", title: "" }
+      { url: "/assets/images/chagan/chagan-1.jpg", title: "冬捕现场" },
+      { url: "/assets/images/chagan/chagan-2.jpg", title: "冰湖捕鱼" },
+      { url: "/assets/images/chagan/chagan-3.jpg", title: "渔猎文化" },
+      { url: "/assets/images/chagan/chagan-4.jpg", title: "冰上娱乐" },
+      { url: "/assets/images/chagan/chagan-5.jpg", title: "查干湖全景" }
     ],
     hotspots: [
       {
@@ -180,13 +180,13 @@ export const scenesData = [
     name: "万科松花湖度假区",
     location: "吉林省吉林市",
     description: "国际级滑雪度假区，设施完善，景色优美",
-    image: "https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&q=80",
+    image: "/assets/images/songhuahu/songhuahu-1.jpg",
     panoramaImages: [
-      { url: "assets/images/songhuahu/songhuahu-1.jpg", title: "" },
-      { url: "assets/images/songhuahu/songhuahu-2.jpg", title: "" },
-      { url: "assets/images/songhuahu/songhuahu-3.jpg", title: "" },
-      { url: "assets/images/songhuahu/songhuahu-4.jpg", title: "" },
-      { url: "assets/images/songhuahu/songhuahu-5.jpg", title: "" }
+      { url: "/assets/images/songhuahu/songhuahu-1.jpg", title: "度假村全景" },
+      { url: "/assets/images/songhuahu/songhuahu-2.jpg", title: "山地雪道" },
+      { url: "/assets/images/songhuahu/songhuahu-3.jpg", title: "滑雪场" },
+      { url: "/assets/images/songhuahu/songhuahu-4.jpg", title: "温泉中心" },
+      { url: "/assets/images/songhuahu/songhuahu-5.jpg", title: "松花湖美景" }
     ],
     hotspots: [
       {
