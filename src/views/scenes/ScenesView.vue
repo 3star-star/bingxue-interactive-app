@@ -212,11 +212,11 @@ const enterPanorama = (scene) => {
   // 记录访问
   userStore.visitScene(scene.id)
 
-  // 模拟加载
+  // 快速加载
   setTimeout(() => {
     initPanorama()
     loading.value = false
-  }, 1000)
+  }, 100)
 }
 
 // 初始化全景

@@ -88,6 +88,7 @@ const props = defineProps({
 const emit = defineEmits(['update:visible', 'close'])
 
 const currentIndex = ref(0)
+const imagesLoaded = ref(new Set())
 let touchStartX = 0
 let touchEndX = 0
 
@@ -95,49 +96,37 @@ const currentImage = computed(() => {
   return props.images[currentIndex.value] || { url: '', title: '' }
 })
 
+// 预加载图片
+const preloadImages = () => {
+  props.images.forEach((img, index) => {
+    if (!imagesLoaded.value.has(index)) {
+      const image = new Image()
+      image.onload = () => {
+        imagesLoaded.value.add(index)
+      }
+      image.src = img.url
+    }
+  })
+}
+
 const nextImage = () => {
   if (currentIndex.value < props.images.length - 1) {
     currentIndex.value++
-    showToast({
-      message: `${currentImage.value.title}`,
-      duration: 1000,
-      position: 'top'
-    })
   } else {
     currentIndex.value = 0
-    showToast({
-      message: '已回到第一张',
-      duration: 1000,
-      position: 'top'
-    })
   }
 }
 
 const prevImage = () => {
   if (currentIndex.value > 0) {
     currentIndex.value--
-    showToast({
-      message: `${currentImage.value.title}`,
-      duration: 1000,
-      position: 'top'
-    })
   } else {
     currentIndex.value = props.images.length - 1
-    showToast({
-      message: '已到最后一张',
-      duration: 1000,
-      position: 'top'
-    })
   }
 }
 
 const goToImage = (index) => {
   currentIndex.value = index
-  showToast({
-    message: `${currentImage.value.title}`,
-    duration: 1000,
-    position: 'top'
-  })
 }
 
 const handleClose = () => {
@@ -186,15 +175,20 @@ const handleKeydown = (e) => {
 watch(() => props.visible, (newVal) => {
   if (newVal) {
     document.body.style.overflow = 'hidden'
-    showToast({
-      message: '🌐 进入全景模式',
-      duration: 1500
-    })
+    // 立即预加载所有图片
+    preloadImages()
   } else {
     document.body.style.overflow = ''
     currentIndex.value = 0
   }
 })
+
+// 监听图片数组变化，提前预加载
+watch(() => props.images, () => {
+  if (props.visible) {
+    preloadImages()
+  }
+}, { immediate: true })
 
 onMounted(() => {
   const container = document.querySelector('.panorama-main')

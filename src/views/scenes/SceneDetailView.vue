@@ -256,22 +256,12 @@ const enterPanorama = () => {
     return
   }
 
-  showToast({
-    message: '正在加载全景体验...',
-    duration: 1500
-  })
-
-  // 延迟打开全景查看器，让Toast显示完整
-  setTimeout(() => {
-    showPanoramaViewer.value = true
-  }, 300)
+  // 立即打开全景查看器，无延迟
+  showPanoramaViewer.value = true
 }
 
 const handlePanoramaClose = () => {
-  showToast({
-    message: '已退出全景模式',
-    duration: 1500
-  })
+  // 移除退出提示，提升响应速度
 }
 
 onMounted(() => {
@@ -282,6 +272,14 @@ onMounted(() => {
       const detail = sceneDetails[sceneId] || {}
       scene.value = { ...baseScene, ...detail }
       userStore.visitScene(sceneId)
+
+      // 立即预加载全景图片，提升响应速度
+      if (scene.value.panoramaImages && scene.value.panoramaImages.length > 0) {
+        scene.value.panoramaImages.forEach(img => {
+          const image = new Image()
+          image.src = img.url
+        })
+      }
     }
   }
 })
