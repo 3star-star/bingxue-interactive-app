@@ -1,0 +1,1 @@
+function r(t){if(t.startsWith("http://")||t.startsWith("https://"))return t;const s="/bingxue-interactive-app/";if(t.startsWith(s))return t;const e=t.startsWith("/")?t.slice(1):t;return`${s}${e}`}export{r as g};
